@@ -19,6 +19,10 @@ This is Gabriel's personal portfolio site. Keep these standards in mind for ever
 - Don't hardcode user-facing strings in components — structure content so it can be localized (e.g. a simple i18n dictionary/library) from the start, rather than retrofitting it later.
 - Default locale should be sensible (e.g. detect browser language or default to Portuguese since the author is Brazilian), but always give the user a visible way to switch.
 
+## Code style
+
+- Avoid in-code comments as much as possible. Code should be self-explanatory through naming and structure. Only add a comment when it captures a non-obvious "why" (a hidden constraint, a workaround, a surprising edge case) — never to restate what the code already says.
+
 ## Stack conventions (already set up)
 
 - Vite + React + TypeScript, Tailwind CSS v4, shadcn/ui (radix base, nova preset).

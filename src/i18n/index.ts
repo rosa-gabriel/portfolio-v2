@@ -20,6 +20,7 @@ i18n
     defaultNS,
     fallbackLng: 'en',
     supportedLngs: supportedLanguages,
+    load: 'languageOnly',
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
