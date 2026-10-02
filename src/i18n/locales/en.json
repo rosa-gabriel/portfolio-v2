@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "title": "Get started",
+    "description": "Edit <code>src/App.tsx</code> and save to test <code>HMR</code>",
+    "counter": "Count is {{count}}"
+  },
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Your questions, answered",
+    "vite": "Explore Vite",
+    "react": "Learn more"
+  },
+  "social": {
+    "title": "Connect with us",
+    "subtitle": "Join the Vite community"
+  }
+}
