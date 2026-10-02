@@ -2,6 +2,8 @@
 
 Personal portfolio site, built for speed and with a bit of personality.
 
+🔗 **[rosa-gabriel.github.io](https://rosa-gabriel.github.io/)**
+
 [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vite.dev)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
@@ -20,8 +22,8 @@ Requires Node 20+.
 
 ```bash
 # clone
-git clone git@github.com:rosa-gabriel/portfolio-v2.git
-cd portfolio-v2
+git clone git@github.com:rosa-gabriel/rosa-gabriel.github.io.git
+cd rosa-gabriel.github.io
 
 # install
 npm install
