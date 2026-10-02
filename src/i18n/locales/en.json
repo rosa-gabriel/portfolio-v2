@@ -1,17 +1,54 @@
 {
+  "meta": {
+    "title": "Gabriel Rosa, Systems Architect"
+  },
   "hero": {
-    "title": "Get started",
-    "description": "Edit <code>src/App.tsx</code> and save to test <code>HMR</code>",
-    "counter": "Count is {{count}}"
+    "status": "available for work",
+    "command": "whoami",
+    "tagline": "Scalable systems architect building event-driven platforms at WEG. Currently researching parallel and distributed computing at UDESC.",
+    "ctaProjects": "View projects",
+    "ctaContact": "Get in touch",
+    "terminalTitle": "about.sh",
+    "fieldOs": "Scalable Systems Architect @ WEG",
+    "fieldShell": "Go · Rust · Kafka · Kubernetes",
+    "fieldHost": "Jaraguá do Sul, BR"
   },
-  "docs": {
-    "title": "Documentation",
-    "subtitle": "Your questions, answered",
-    "vite": "Explore Vite",
-    "react": "Learn more"
+  "section": {
+    "streamingIndex": "01",
+    "streamingEyebrow": "event-driven",
+    "streamingTitle": "Platforms, not spaghetti integrations",
+    "streamingPoint1": "Internal streaming platform decoupling integrations across the org with Kafka, RabbitMQ and Flink.",
+    "streamingPoint2": "Real-time processing and enrichment, not just data in motion.",
+    "streamingPoint3": "Hybrid multi-cloud deployment with cross-cluster replication.",
+    "streamingLink": "See the platform work",
+    "platformIndex": "02",
+    "platformEyebrow": "platform engineering",
+    "platformTitle": "Infrastructure ~900 developers rely on",
+    "platformPoint1": "Centralized API Gateway on Kubernetes, evolved into a micro-gateway architecture.",
+    "platformPoint2": "Self-service provisioning for 300+ databases, cutting operational overhead.",
+    "platformPoint3": "Observability with OpenTelemetry: logs, metrics and traces in one place.",
+    "platformLink": "See how it's built"
   },
-  "social": {
-    "title": "Connect with us",
-    "subtitle": "Join the Vite community"
+  "projects": {
+    "eyebrow": "projects",
+    "title": "Selected work",
+    "subtitle": "A few things I've built and shipped.",
+    "project1Title": "Oxid Gateway",
+    "project1Description": "High-performance API gateway written in Rust, built as my engineering thesis and inspired by real gateway challenges at WEG.",
+    "project2Title": "Event Streaming Platform",
+    "project2Description": "Internal platform at WEG for decoupled, event-driven integrations across Kafka, RabbitMQ and Flink.",
+    "project3Title": "Developers Suite",
+    "project3Description": "Internal developer platform standardizing APIs and infrastructure for about 900 developers."
+  },
+  "contact": {
+    "eyebrow": "contact",
+    "title": "Let's build something",
+    "subtitle": "Open to new opportunities and interesting problems.",
+    "emailLabel": "Email",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn"
+  },
+  "footer": {
+    "text": "Built with Vite, React and a Kanagawa colorscheme."
   }
 }

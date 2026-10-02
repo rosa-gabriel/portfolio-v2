@@ -1,17 +1,54 @@
 {
+  "meta": {
+    "title": "Gabriel Rosa, Arquiteto de Sistemas"
+  },
   "hero": {
-    "title": "Vamos começar",
-    "description": "Edite <code>src/App.tsx</code> e salve para testar o <code>HMR</code>",
-    "counter": "Contagem: {{count}}"
+    "status": "disponível para trabalho",
+    "command": "whoami",
+    "tagline": "Arquiteto de sistemas escaláveis construindo plataformas orientadas a eventos na WEG. Atualmente pesquisando computação paralela e distribuída na UDESC.",
+    "ctaProjects": "Ver projetos",
+    "ctaContact": "Entrar em contato",
+    "terminalTitle": "sobre.sh",
+    "fieldOs": "Arquiteto de Sistemas Escaláveis @ WEG",
+    "fieldShell": "Go · Rust · Kafka · Kubernetes",
+    "fieldHost": "Jaraguá do Sul, BR"
   },
-  "docs": {
-    "title": "Documentação",
-    "subtitle": "Suas dúvidas, respondidas",
-    "vite": "Explorar o Vite",
-    "react": "Saiba mais"
+  "section": {
+    "streamingIndex": "01",
+    "streamingEyebrow": "orientado a eventos",
+    "streamingTitle": "Plataformas, não integrações emendadas",
+    "streamingPoint1": "Plataforma de streaming interna desacoplando integrações da organização com Kafka, RabbitMQ e Flink.",
+    "streamingPoint2": "Processamento e enriquecimento em tempo real, não só dados em trânsito.",
+    "streamingPoint3": "Deploy híbrido multi-cloud com replicação entre clusters.",
+    "streamingLink": "Ver o trabalho de plataforma",
+    "platformIndex": "02",
+    "platformEyebrow": "platform engineering",
+    "platformTitle": "Infraestrutura que ~900 desenvolvedores usam",
+    "platformPoint1": "API Gateway centralizado em Kubernetes, evoluído para uma arquitetura de micro-gateways.",
+    "platformPoint2": "Provisionamento self-service para mais de 300 bancos de dados, reduzindo esforço operacional.",
+    "platformPoint3": "Observabilidade com OpenTelemetry: logs, métricas e traces em um só lugar.",
+    "platformLink": "Ver como é construído"
   },
-  "social": {
-    "title": "Conecte-se conosco",
-    "subtitle": "Participe da comunidade Vite"
+  "projects": {
+    "eyebrow": "projetos",
+    "title": "Trabalhos selecionados",
+    "subtitle": "Algumas coisas que construí e entreguei.",
+    "project1Title": "Oxid Gateway",
+    "project1Description": "API gateway de alta performance escrito em Rust, construído como TCC e inspirado em desafios reais de gateway na WEG.",
+    "project2Title": "Plataforma de Streaming de Eventos",
+    "project2Description": "Plataforma interna na WEG para integrações desacopladas e orientadas a eventos com Kafka, RabbitMQ e Flink.",
+    "project3Title": "Developers Suite",
+    "project3Description": "Plataforma interna de desenvolvedores padronizando APIs e infraestrutura para cerca de 900 desenvolvedores."
+  },
+  "contact": {
+    "eyebrow": "contato",
+    "title": "Vamos construir algo",
+    "subtitle": "Aberto a novas oportunidades e problemas interessantes.",
+    "emailLabel": "Email",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn"
+  },
+  "footer": {
+    "text": "Construído com Vite, React e um esquema de cores Kanagawa."
   }
 }

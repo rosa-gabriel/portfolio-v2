@@ -14,7 +14,7 @@ Personal portfolio site, built for speed and with a bit of personality.
 
 - ⚡️ Vite + React + TypeScript
 - 🎨 Tailwind CSS v4 + shadcn/ui (radix base)
-- 🌐 i18n out of the box — Portuguese and English, auto-detected from the browser
+- 🌐 i18n out of the box: Portuguese and English, auto-detected from the browser
 
 ## Getting started
 
