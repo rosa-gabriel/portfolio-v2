@@ -1,8 +1,11 @@
-#language-switcher {
+#top-controls {
   position: fixed;
   top: 16px;
   right: 16px;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .counter {

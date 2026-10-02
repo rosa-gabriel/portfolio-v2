@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LanguageSwitcher } from '@/components/language-switcher'
+import { ThemeToggle } from '@/components/theme-toggle'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
@@ -12,7 +13,8 @@ function App() {
 
   return (
     <>
-      <div id="language-switcher">
+      <div id="top-controls">
+        <ThemeToggle />
         <LanguageSwitcher />
       </div>
 
