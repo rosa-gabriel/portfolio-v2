@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StatusBar } from '@/components/status-bar'
 import { Footer } from '@/components/footer'
@@ -8,7 +9,11 @@ import { ContactCta } from '@/components/sections/contact-cta'
 import { TerminalWindow } from '@/components/terminal-window'
 
 function App() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
+  useEffect(() => {
+    document.title = t('meta.title')
+  }, [t, i18n.language])
 
   return (
     <div className="flex min-h-svh flex-col">

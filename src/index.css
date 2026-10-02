@@ -142,6 +142,62 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.4);
+    opacity: 0;
+  }
+  6% {
+    transform: translate3d(0, 2vh, 0) scale(1);
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--drift), 25vh, 0) scale(0.85);
+    opacity: 0;
+  }
+}
+
+@keyframes petal-sway {
+  from {
+    transform: translateX(calc(var(--sway) * -1)) rotate(calc(var(--tilt) * -1));
+  }
+  to {
+    transform: translateX(var(--sway)) rotate(var(--tilt));
+  }
+}
+
+@keyframes petal-flutter {
+  from {
+    transform: rotate3d(var(--axis-x), var(--axis-y), 0.4, 0deg);
+  }
+  to {
+    transform: rotate3d(var(--axis-x), var(--axis-y), 0.4, 360deg);
+  }
+}
+
+.petal-fall {
+  animation-name: petal-fall;
+  animation-timing-function: cubic-bezier(0.3, 0.1, 0.6, 1);
+  animation-fill-mode: forwards;
+  will-change: transform, opacity;
+}
+
+.petal-sway {
+  animation-name: petal-sway;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.petal-flutter {
+  animation-name: petal-flutter;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
