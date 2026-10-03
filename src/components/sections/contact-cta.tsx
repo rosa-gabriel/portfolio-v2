@@ -2,7 +2,7 @@ import { Check, Copy, Download } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { TerminalWindow } from '@/components/terminal-window'
 import { useCopy } from '@/hooks/use-copy'
-import { contactLinks, email, resumeHref } from '@/lib/contact-links'
+import { contactLinks, email, resumes } from '@/lib/contact-links'
 import { reveal } from '@/lib/reveal'
 import { cn } from '@/lib/utils'
 
@@ -111,15 +111,22 @@ export function ContactCta() {
               </a>
             ))}
 
-          <a
-            {...reveal('up', 7)}
-            href={resumeHref}
-            download
-            className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
-          >
-            <span className="text-kanagawa-green">$</span> curl -O resume.pdf
-            <Download className="size-4" />
-          </a>
+          {resumes.map((resume, index) => (
+            <a
+              key={resume.language}
+              {...reveal('up', 7 + index)}
+              href={resume.href}
+              download={resume.downloadName}
+              hrefLang={resume.language}
+              type="application/pdf"
+              className="flex min-w-0 items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+            >
+              <span className="text-kanagawa-green">$</span>
+              <span className="truncate">curl -O {resume.path}</span>
+              <span className="shrink-0 text-xs">({resume.label})</span>
+              <Download className="size-4 shrink-0" />
+            </a>
+          ))}
         </div>
       </div>
     </section>

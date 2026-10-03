@@ -1,0 +1,111 @@
+\documentclass[a4paper,9pt]{extarticle}
+
+\usepackage{parskip}
+\usepackage{fontspec}
+\usepackage[brazilian]{babel}
+
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage{xcolor}
+\usepackage[scale=0.9, top=.4in, bottom=.4in]{geometry}
+
+\usepackage{tabularx}
+\usepackage{enumitem}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\usepackage{titlesec}
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{1pt}{4pt}{3pt}
+
+\usepackage[unicode, draft=false]{hyperref}
+\hypersetup{
+  pdftitle={Gabriel Eduardo da Silva Rosa - Currículo},
+  pdfauthor={Gabriel Eduardo da Silva Rosa},
+  pdfsubject={Arquiteto de Sistemas Escaláveis},
+  pdfkeywords={Arquiteto de Sistemas, Engenharia de Plataforma, Arquitetura Orientada a Eventos, Apache Kafka, Apache Flink, Kubernetes, Java, Go, Rust, Sistemas Distribuídos},
+  pdflang={pt-BR},
+  colorlinks=true, urlcolor=[HTML]{371e77}, linkcolor=[HTML]{371e77}
+}
+\color[HTML]{110223}
+
+\usepackage{fontawesome5}
+\usepackage{accsupp}
+% icons are hidden from text extraction so ATS parsers don't read them as stray characters
+\newcommand{\icon}[1]{\BeginAccSupp{method=plain,ActualText={}}#1\EndAccSupp{}}
+\usepackage[normalem]{ulem}
+
+% Arial is not installed everywhere (e.g. some Linux TeX setups); Liberation Sans has identical metrics
+\IfFontExistsTF{Arial}{\setmainfont{Arial}}{\setmainfont{Liberation Sans}}
+
+\setlist[itemize]{nosep, leftmargin=2em, itemsep=2pt, topsep=2pt}
+
+% product names are never split across lines
+\hyphenation{Keycloak Kubernetes OpenTelemetry PostgreSQL MongoDB Databricks RabbitMQ Quarkus Oracle}
+\emergencystretch=1.5em
+
+\newcommand{\role}[4]{%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textcolor[HTML]{1C033C}{\textbf{#1}} & \textcolor[HTML]{371e77}{#2} \\[1pt]
+    \textcolor[HTML]{371e77}{\textbf{\textit{#3}}} & \textcolor[HTML]{4B28A4}{\textit{#4}} \\
+  \end{tabularx}\par\vspace{1pt}%
+}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{tabularx}{\linewidth}{@{} C @{}}
+\color[HTML]{1C033C} \Huge{Gabriel Eduardo da Silva Rosa} \\[4pt]
+\color[HTML]{371e77} \large{Arquiteto de Sistemas Escaláveis $|$ Plataformas Orientadas a Eventos $|$ Engenharia de Plataforma} \\[5pt]
+\textcolor[HTML]{371e77}{\icon{\faMapMarker*} Jaraguá do Sul, SC, Brasil (UTC-3) $|$ Aberto a remoto, híbrido, presencial e mudança} \\[3pt]
+\textcolor[HTML]{371e77}{\href{mailto:gabriel.edu.rosa@proton.me}{\icon{\faEnvelope} gabriel.edu.rosa@proton.me}} $|$
+\textcolor[HTML]{371e77}{\href{https://rosa-gabriel.github.io}{\icon{\faGlobe} rosa-gabriel.github.io}} $|$
+\textcolor[HTML]{371e77}{\href{https://github.com/rosa-gabriel}{\icon{\raisebox{-0.05\height}{\faGithub}} github.com/rosa-gabriel}} $|$
+\textcolor[HTML]{371e77}{\href{https://www.linkedin.com/in/gabriel-edu-rosa/}{\icon{\raisebox{-0.05\height}{\faLinkedin}} linkedin.com/in/gabriel-edu-rosa}}
+\end{tabularx}
+
+\section{Resumo}
+\color[HTML]{1C033C}Arquiteto de sistemas com 4 anos construindo plataformas orientadas a eventos e plataformas internas de desenvolvimento na WEG. Economizei R\$12 milhões modernizando a autenticação, reduzi o atraso de sincronização de dados de 1 dia para 200 ms e construí plataformas que atendem mais de 1.000 desenvolvedores e 600 bancos de dados.
+
+\section{Competências}
+\color[HTML]{1C033C}\textbf{Linguagens e Frameworks:} Java, Go, Rust, TypeScript, JavaScript, Quarkus, NestJS\\[2pt]
+\textbf{Streaming e Dados:} Apache Kafka, Kafka Connect, Apache Flink, RabbitMQ, Databricks, Qlik Replicate, PostgreSQL, MongoDB, Oracle, Redis, MinIO\\[2pt]
+\textbf{Cloud e Plataforma:} Kubernetes, AWS, Kong, Keycloak, OpenID Connect, OpenTelemetry, Grafana, CI/CD, SAP Business Suite\\[2pt]
+\textbf{Arquitetura:} Arquitetura Orientada a Eventos, Domain-Driven Design, Governança de APIs, Sistemas Distribuídos, Computação Paralela
+
+\section{Experiência Profissional}
+\role{WEG, Jaraguá do Sul, SC}{Set 2025 - Atual}{Arquiteto de Sistemas Escaláveis}{Contrato, Híbrido}
+\begin{itemize}
+    \item Lidero a arquitetura de uma plataforma de streaming de eventos on-premise (Kafka, RabbitMQ, Flink) que permite que times de toda a organização criem integrações desacopladas e self-service por meio de um barramento central de eventos.
+    \item Construí o provisionamento automatizado de conectores para bancos de dados e sistemas externos, tornando a integração com o barramento central de eventos um processo self-service.
+    \item Implementei processamento, transformação e enriquecimento de dados em tempo real com Apache Flink, viabilizando analytics em streaming sobre dados corporativos.
+    \item Projetei uma arquitetura híbrida (on-premise e AWS) com replicação entre clusters para disponibilidade em múltiplos ambientes.
+    \item Lidero uma plataforma low-code para integrações em tempo real que abstrai a complexidade de eventos para times sem experiência em streaming.
+    \item Java, Quarkus, Apache Kafka, Kafka Connect, Apache Flink, RabbitMQ, Kubernetes, AWS
+\end{itemize}
+
+\role{WEG, Jaraguá do Sul, SC}{Fev 2023 - Ago 2025}{Pesquisador em Arquitetura de Software}{Arquitetura de Sistemas e Governança de Dados}
+\begin{itemize}
+    \item Liderei a substituição da stack de autenticação da WEG, padronizando a autenticação de usuários e entre sistemas com OpenID Connect e Keycloak e gerando R\$12 milhões em economia em um único projeto.
+    \item Reduzi o atraso de sincronização de dados de 1 dia para 200 ms, substituindo jobs batch agendados via cron por uma arquitetura orientada a eventos.
+    \item Projetei o Developers Suite, plataforma interna de desenvolvimento para governança de APIs e sistemas que hoje gerencia e guia mais de 1.000 desenvolvedores, unificando os padrões de integração entre os times.
+    \item Construí uma plataforma self-service de provisionamento de bancos de dados e ambientes Kubernetes, que hoje gerencia mais de 600 bancos (PostgreSQL, MongoDB, Redis, MinIO) e reduziu o tempo de provisionamento.
+    \item Arquitetei um API gateway centralizado com Kong no Kubernetes e o evoluí para uma arquitetura de micro-gateways on-premise e na nuvem, reduzindo lógica de integração duplicada.
+    \item Implementei observabilidade com OpenTelemetry (logs, métricas e traces no Grafana) e pipelines de CI/CD reproduzíveis para deploys automatizados no Kubernetes.
+    \item TypeScript, Kubernetes, Kong, Keycloak, OpenID Connect, OpenTelemetry, Grafana, PostgreSQL, MongoDB, Redis, MinIO
+\end{itemize}
+
+\section{Formação Acadêmica}
+\role{Universidade do Estado de Santa Catarina (UDESC)}{Mar 2026 - Dez 2028 (previsão)}{Mestrado em Computação Aplicada, Programação Paralela Avançada}{Computação paralela e distribuída, HPC}
+\role{Católica de Santa Catarina}{Mar 2022 - Dez 2025}{Bacharelado em Engenharia de Software}{Bolsa de pesquisa em parceria com a WEG}
+
+\section{Projetos}
+\begin{itemize}
+    \item \textbf{Oxid Gateway (2025, TCC):} Projetei e desenvolvi um API gateway de alto desempenho em Rust, inspirado na implantação do API gateway na WEG, explorando arquiteturas modernas de proxy e otimizações de desempenho de baixo nível. Rust.
+\end{itemize}
+
+\section{Idiomas e Certificados}
+\begin{itemize}
+    \item \textbf{Inglês:} C1, University of Michigan English Proficiency (nota 73, nov 2020) $|$ \textbf{Português:} Nativo
+\end{itemize}
+\end{document}

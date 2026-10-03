@@ -3,7 +3,7 @@ import en from '../src/i18n/locales/en.json' with { type: 'json' }
 import { caseStudies } from '../src/lib/case-studies.ts'
 import { certificates } from '../src/lib/certificates.ts'
 import { journeyEntries, type JourneyEntry } from '../src/lib/journey.ts'
-import { email, githubUrl, googleSiteVerification, linkedinUrl, location, siteUrl } from '../src/lib/profile.ts'
+import { email, githubUrl, googleSiteVerification, linkedinUrl, location, resumeFiles, siteUrl } from '../src/lib/profile.ts'
 import { skillGroups } from '../src/lib/skills.ts'
 
 const NAME = 'Gabriel Rosa'
@@ -54,6 +54,9 @@ function renderHtml() {
           <li><a href="mailto:${email}">${email}</a></li>
           <li><a href="${githubUrl}">GitHub</a></li>
           <li><a href="${linkedinUrl}">LinkedIn</a></li>
+          ${Object.values(resumeFiles)
+            .map((resume) => `<li><a href="${siteUrl}${resume.path}">Resume PDF (${resume.label})</a></li>`)
+            .join('')}
         </ul>
       </header>
       <section>
@@ -133,6 +136,7 @@ function renderMarkdown() {
       `GitHub: ${githubUrl}`,
       `LinkedIn: ${linkedinUrl}`,
       `Website: ${siteUrl}`,
+      ...Object.values(resumeFiles).map((resume) => `Resume PDF (${resume.label}): ${siteUrl}${resume.path}`),
     ]),
     '## Highlights',
     bullets(Object.values(en.highlights.items).map((item) => `${item.headline}: ${item.detail}`)),

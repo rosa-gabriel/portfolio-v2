@@ -5,10 +5,11 @@ import { Button } from '@/components/ui/button'
 import { DecryptText } from '@/components/decrypt-text'
 import { NeofetchPanel } from '@/components/neofetch-panel'
 import { TerminalWindow } from '@/components/terminal-window'
-import { contactLinks, resumeHref } from '@/lib/contact-links'
+import { contactLinks, resumeFor } from '@/lib/contact-links'
 
 export function Hero() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const resume = resumeFor(i18n.resolvedLanguage ?? i18n.language)
 
   return (
     <section className="mx-auto grid w-full max-w-5xl items-center gap-10 px-4 pt-8 pb-8 sm:px-6 sm:pt-16 sm:pb-10 lg:grid-cols-[minmax(0,1fr)_28rem] lg:gap-8 lg:pt-8 lg:pb-8">
@@ -32,7 +33,7 @@ export function Hero() {
 
         <div className="mt-2 flex flex-wrap gap-2 sm:mt-4">
           <Button size="lg" className="max-[359px]:w-full" asChild>
-            <a href={resumeHref} download>
+            <a href={resume.href} download={resume.downloadName} hrefLang={resume.language} type="application/pdf">
               <Download data-icon="inline-start" />
               {t('hero.downloadResume')}
             </a>
