@@ -4,7 +4,7 @@ import { ArchitectureFlow } from '@/components/architecture/architecture-flow'
 import { Footer } from '@/components/footer'
 import { ContactCta } from '@/components/sections/contact-cta'
 import { Hero } from '@/components/sections/hero'
-import { Projects } from '@/components/sections/projects'
+import { Highlights } from '@/components/sections/highlights'
 import { StatusBar } from '@/components/status-bar'
 import { VineMargins } from '@/components/vine-margins'
 
@@ -30,17 +30,19 @@ function App() {
       <VineMargins />
       <StatusBar />
       <main className="flex-1">
-        <Hero />
+        <div className="flex flex-col justify-center lg:min-h-[calc(100svh-3rem)]">
+          <Hero />
+          <Highlights />
+        </div>
         <ArchitectureFlow />
         <Suspense fallback={<div className="min-h-svh" />}>
           <GatewayFlow />
-          <AuthFlow />
+          <AgentsFlow />
           <K8sFlow />
           <ObservabilityFlow />
           <DddFlow />
-          <AgentsFlow />
+          <AuthFlow />
         </Suspense>
-        <Projects />
         <ContactCta />
       </main>
       <Footer />

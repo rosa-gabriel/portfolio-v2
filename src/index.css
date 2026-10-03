@@ -55,6 +55,7 @@
   --petal-2: #d7474b;
   --petal-3: #b35b79;
   --vine: color-mix(in oklab, #766b90 45%, transparent);
+  --gain: color-mix(in oklab, #de9800 34%, transparent);
 }
 
 .dark {
@@ -105,6 +106,7 @@
   --petal-2: #ff5d62;
   --petal-3: #d27e99;
   --vine: color-mix(in oklab, #938aa9 40%, transparent);
+  --gain: color-mix(in oklab, #e6c384 24%, transparent);
 }
 
 @theme inline {
@@ -215,6 +217,40 @@
   animation-name: petal-flutter;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+.gain {
+  color: var(--foreground);
+  font-weight: 600;
+  background-image: linear-gradient(transparent 52%, var(--gain) 52%, var(--gain) 92%, transparent 92%);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-size 900ms cubic-bezier(0.3, 0.1, 0.2, 1);
+}
+
+[data-visible] .gain {
+  background-size: 100% 100%;
+}
+
+[data-visible] .gain:nth-of-type(2) {
+  transition-delay: 250ms;
+}
+
+[data-visible] .gain:nth-of-type(3) {
+  transition-delay: 500ms;
+}
+
+[data-visible] .gain:nth-of-type(4) {
+  transition-delay: 750ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gain {
+    background-size: 100% 100%;
+    transition: none;
+  }
 }
 
 @keyframes vine-rise {

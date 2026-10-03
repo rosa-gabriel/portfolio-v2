@@ -55,17 +55,6 @@
       "batchLoading_one": "Carga completa rodando: copiando a 1 linha da tabela. Toda execução futura vai copiar tudo de novo, inclusive esta."
     }
   },
-  "projects": {
-    "eyebrow": "projetos",
-    "title": "Trabalhos selecionados",
-    "subtitle": "Algumas coisas que construí e entreguei.",
-    "project1Title": "Oxid Gateway",
-    "project1Description": "API gateway de alta performance escrito em Rust, construído como TCC e inspirado em desafios reais de gateway na WEG.",
-    "project2Title": "Plataforma de Streaming de Eventos",
-    "project2Description": "Plataforma interna na WEG para integrações desacopladas e orientadas a eventos com Kafka, RabbitMQ e Flink.",
-    "project3Title": "Developers Suite",
-    "project3Description": "Plataforma interna de desenvolvedores padronizando APIs e infraestrutura para cerca de 900 desenvolvedores."
-  },
   "contact": {
     "eyebrow": "contato",
     "title": "Vamos construir algo",
@@ -114,7 +103,7 @@
     }
   },
   "auth": {
-    "eyebrow": "03/ identidade",
+    "eyebrow": "07/ identidade",
     "title": "Faça login uma vez, em tudo",
     "subtitle": "O Keycloak fala OpenID Connect: as aplicações delegam a autenticação a um único provedor de identidade e recebem tokens assinados, que qualquer API consegue verificar sozinha.",
     "goal1": "Faça login no portal e depois abra o dashboard.",
@@ -269,7 +258,7 @@
     }
   },
   "agents": {
-    "eyebrow": "07/ engenharia com ia",
+    "eyebrow": "03/ engenharia com ia",
     "title": "Mais mãos, o mesmo critério",
     "subtitle": "Eu divido o trabalho em tarefas bem definidas e entrego para agentes do Claude Code, cada um no seu próprio git worktree. Eles implementam em paralelo; eu fico no design e reviso cada mudança antes de ir para produção.",
     "goal1": "Adicione um lote de tarefas e resolva sozinho.",
@@ -298,6 +287,46 @@
       "agentsBusy": "{{count}} agentes trabalhando em paralelo. Cada mudança volta como um PR que eu reviso antes de chegar na main.",
       "agentsReview": "Agora o gargalo é a revisão, que é exatamente onde um humano deve estar: os agentes digitam, eu decido o que vai para produção.",
       "agentsBusy_one": "1 agente trabalhando. Cada mudança volta como um PR que eu reviso antes de chegar na main."
+    }
+  },
+  "highlights": {
+    "label": "destaques",
+    "previous": "Destaque anterior",
+    "next": "Próximo destaque",
+    "goTo": "Ir para o destaque {{n}}",
+    "items": {
+      "h1": {
+        "headline": "~900 desenvolvedores",
+        "detail": "em uma plataforma interna de governança de APIs e sistemas"
+      },
+      "h2": {
+        "headline": "300+ bancos",
+        "detail": "provisionados em self-service, do Postgres ao Redis"
+      },
+      "h3": {
+        "headline": "Tempo real",
+        "detail": "processamento e enriquecimento de eventos com Flink"
+      },
+      "h4": {
+        "headline": "Integrações desacopladas",
+        "detail": "self-service, em toda a organização"
+      },
+      "h5": {
+        "headline": "Micro-gateways",
+        "detail": "com Kong, on-premise e na nuvem"
+      },
+      "h6": {
+        "headline": "Menos retrabalho",
+        "detail": "padrões de integração compartilhados por todos os times"
+      },
+      "h7": {
+        "headline": "Nuvem híbrida",
+        "detail": "replicação entre clusters on-premise e na nuvem"
+      },
+      "h8": {
+        "headline": "API gateway em Rust",
+        "detail": "alta performance, confiabilidade de produção"
+      }
     }
   }
 }

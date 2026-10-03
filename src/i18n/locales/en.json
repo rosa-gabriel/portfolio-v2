@@ -55,17 +55,6 @@
       "batchLoading_one": "Full load running: copying the 1 row in the table. Every future run will copy everything again, including this one."
     }
   },
-  "projects": {
-    "eyebrow": "projects",
-    "title": "Selected work",
-    "subtitle": "A few things I've built and shipped.",
-    "project1Title": "Oxid Gateway",
-    "project1Description": "High-performance API gateway written in Rust, built as my engineering thesis and inspired by real gateway challenges at WEG.",
-    "project2Title": "Event Streaming Platform",
-    "project2Description": "Internal platform at WEG for decoupled, event-driven integrations across Kafka, RabbitMQ and Flink.",
-    "project3Title": "Developers Suite",
-    "project3Description": "Internal developer platform standardizing APIs and infrastructure for about 900 developers."
-  },
   "contact": {
     "eyebrow": "contact",
     "title": "Let's build something",
@@ -114,7 +103,7 @@
     }
   },
   "auth": {
-    "eyebrow": "03/ identity",
+    "eyebrow": "07/ identity",
     "title": "Log in once, everywhere",
     "subtitle": "Keycloak speaks OpenID Connect: apps hand authentication to one identity provider and get signed tokens back, which any API can verify on its own.",
     "goal1": "Log in to the portal, then open the dashboard.",
@@ -269,7 +258,7 @@
     }
   },
   "agents": {
-    "eyebrow": "07/ ai-assisted engineering",
+    "eyebrow": "03/ ai-assisted engineering",
     "title": "More hands, same judgment",
     "subtitle": "I split work into well-scoped tasks and hand them to Claude Code agents, each in its own git worktree. They implement in parallel; I stay on design and review every change before it ships.",
     "goal1": "Add a batch of tasks and work through them solo.",
@@ -298,6 +287,46 @@
       "agentsBusy": "{{count}} agents working in parallel. Each change comes back as a PR that I review before it reaches main.",
       "agentsReview": "Now the bottleneck is review, which is exactly where a human should be: the agents type, I decide what ships.",
       "agentsBusy_one": "1 agent working. Each change comes back as a PR that I review before it reaches main."
+    }
+  },
+  "highlights": {
+    "label": "highlights",
+    "previous": "Previous highlight",
+    "next": "Next highlight",
+    "goTo": "Go to highlight {{n}}",
+    "items": {
+      "h1": {
+        "headline": "~900 developers",
+        "detail": "on one internal platform for APIs and system governance"
+      },
+      "h2": {
+        "headline": "300+ databases",
+        "detail": "provisioned self-service, from Postgres to Redis"
+      },
+      "h3": {
+        "headline": "Real-time",
+        "detail": "event processing and enrichment with Flink"
+      },
+      "h4": {
+        "headline": "Decoupled integrations",
+        "detail": "self-service, across the whole organization"
+      },
+      "h5": {
+        "headline": "Micro-gateways",
+        "detail": "on Kong, on-premise and in the cloud"
+      },
+      "h6": {
+        "headline": "Less duplication",
+        "detail": "integration patterns shared by every team"
+      },
+      "h7": {
+        "headline": "Hybrid cloud",
+        "detail": "cross-cluster replication between on-premise and cloud"
+      },
+      "h8": {
+        "headline": "Rust API gateway",
+        "detail": "high performance, production-grade reliability"
+      }
     }
   }
 }

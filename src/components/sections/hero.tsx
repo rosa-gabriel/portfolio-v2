@@ -10,7 +10,7 @@ export function Hero() {
   const { t } = useTranslation()
 
   return (
-    <section className="mx-auto grid max-w-5xl items-center gap-10 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[minmax(0,1fr)_28rem] lg:gap-8">
+    <section className="mx-auto grid w-full max-w-5xl items-center gap-10 px-4 pt-12 pb-10 sm:px-6 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_28rem] lg:gap-8 lg:pt-8 lg:pb-8">
       <div className="flex flex-col gap-4">
         <p className="text-sm text-muted-foreground">
           <span className="text-kanagawa-green">$</span> {t('hero.command')}
