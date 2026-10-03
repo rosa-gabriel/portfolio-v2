@@ -19,14 +19,10 @@ export function Hero() {
           </p>
           <a
             href="#contact"
-            className="group inline-flex items-center gap-2 rounded-full border border-kanagawa-green/40 bg-kanagawa-green/10 px-2.5 py-0.5 text-xs text-kanagawa-green transition-colors hover:bg-kanagawa-green/20"
+            className="inline-flex items-center gap-2 rounded-full border border-kanagawa-green/40 bg-kanagawa-green/10 px-2.5 py-0.5 text-xs text-kanagawa-green transition-colors hover:bg-kanagawa-green/20"
           >
-            <span className="relative flex size-2">
-              <span className="absolute inset-0 animate-ping rounded-full bg-kanagawa-green opacity-60 motion-reduce:animate-none" />
-              <span className="relative size-2 rounded-full bg-kanagawa-green" />
-            </span>
-            {t('availability.status')}
-            <span className="hidden text-kanagawa-green/70 sm:inline">· {t('availability.workModel')}</span>
+            <span className="size-1.5 rounded-full bg-kanagawa-green" />
+            {t('availability.workModel')}
           </a>
         </div>
         <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl">

@@ -658,7 +658,7 @@
   },
   "availability": {
     "status": "open to opportunities",
-    "workModel": "remote · hybrid · relocation",
+    "workModel": "remote · hybrid · on-site · relocation",
     "lookingFor": "What I'm looking for",
     "rolesLabel": "roles",
     "roles": [
@@ -668,7 +668,7 @@
       "Data Streaming Engineer"
     ],
     "modelLabel": "work model",
-    "model": "Remote (international or Brazil), hybrid or on-site in Santa Catarina, open to relocation",
+    "model": "Remote (international or Brazil), hybrid or fully on-site, open to relocation",
     "locationLabel": "location",
     "location": "Jaraguá do Sul, Brazil (UTC-3)",
     "languagesLabel": "languages",

@@ -658,7 +658,7 @@
   },
   "availability": {
     "status": "aberto a oportunidades",
-    "workModel": "remoto · híbrido · mudança",
+    "workModel": "remoto · híbrido · presencial · mudança",
     "lookingFor": "O que eu procuro",
     "rolesLabel": "cargos",
     "roles": [
@@ -668,7 +668,7 @@
       "Engenheiro de Data Streaming"
     ],
     "modelLabel": "modelo",
-    "model": "Remoto (internacional ou Brasil), híbrido ou presencial em Santa Catarina, aberto a mudança",
+    "model": "Remoto (internacional ou Brasil), híbrido ou totalmente presencial, aberto a mudança",
     "locationLabel": "localização",
     "location": "Jaraguá do Sul, Brasil (UTC-3)",
     "languagesLabel": "idiomas",
