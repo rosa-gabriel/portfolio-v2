@@ -31,7 +31,7 @@ export function Hero() {
         <p className="max-w-xl text-base text-muted-foreground sm:text-lg">{t('hero.tagline')}</p>
 
         <div className="mt-2 flex flex-wrap gap-2 sm:mt-4">
-          <Button size="lg" asChild>
+          <Button size="lg" className="max-[359px]:w-full" asChild>
             <a href={resumeHref} download>
               <Download data-icon="inline-start" />
               {t('hero.downloadResume')}

@@ -16,7 +16,7 @@ export const caseStudies: CaseStudy[] = [
     path: '~/weg/streaming-platform',
     org: 'WEG',
     period: '2025 - now',
-    stack: ['Apache Kafka', 'Kafka Connect', 'Apache Flink', 'RabbitMQ', 'Kubernetes'],
+    stack: ['Apache Kafka', 'Kafka Connect', 'Apache Flink', 'RabbitMQ', 'Kubernetes', 'Java', 'Quarkus', 'AWS'],
     demos: [{ key: 'arch', anchor: 'demo-streaming' }],
     featured: true,
   },

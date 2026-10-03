@@ -35,7 +35,9 @@ export function Certificates() {
             {t('certificates.subtitle')}
           </p>
         </div>
-        <CarouselArrows previousLabel={t('certificates.previous')} nextLabel={t('certificates.next')} onMove={move} />
+        {positions > 1 && (
+          <CarouselArrows previousLabel={t('certificates.previous')} nextLabel={t('certificates.next')} onMove={move} />
+        )}
       </div>
 
       <div
