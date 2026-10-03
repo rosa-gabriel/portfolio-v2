@@ -19,7 +19,7 @@ export function Certificates() {
       data-visible={inView || undefined}
       aria-roledescription="carousel"
       aria-label={t('certificates.label')}
-      className="mx-auto max-w-5xl px-4 py-16 sm:px-6"
+      className="render-on-view mx-auto max-w-5xl px-4 py-16 sm:px-6 [--section-estimate:520px]"
       {...pauseHandlers}
     >
       <p className="text-sm text-kanagawa-blue">{t('certificates.eyebrow')}</p>

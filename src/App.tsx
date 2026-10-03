@@ -1,6 +1,5 @@
 import { Suspense, lazy, useEffect, type ComponentType } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ArchitectureFlow } from '@/components/architecture/architecture-flow'
 import { Footer } from '@/components/footer'
 import { ContactCta } from '@/components/sections/contact-cta'
 import { Hero } from '@/components/sections/hero'
@@ -12,6 +11,7 @@ import { VineMargins } from '@/components/vine-margins'
 const lazyFlow = <K extends string>(load: () => Promise<Record<K, ComponentType>>, name: K) =>
   lazy(() => load().then((module) => ({ default: module[name] })))
 
+const ArchitectureFlow = lazyFlow(() => import('@/components/architecture/architecture-flow'), 'ArchitectureFlow')
 const GatewayFlow = lazyFlow(() => import('@/components/flows/gateway-flow'), 'GatewayFlow')
 const AuthFlow = lazyFlow(() => import('@/components/flows/auth-flow'), 'AuthFlow')
 const K8sFlow = lazyFlow(() => import('@/components/flows/k8s-flow'), 'K8sFlow')
@@ -46,8 +46,8 @@ function App() {
             <Certificates />
           </Suspense>
         </div>
-        <ArchitectureFlow />
         <Suspense fallback={<div className="min-h-svh" />}>
+          <ArchitectureFlow />
           <GatewayFlow />
           <AgentsFlow />
           <K8sFlow />

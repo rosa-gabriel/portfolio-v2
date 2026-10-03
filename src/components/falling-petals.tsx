@@ -1,56 +1,137 @@
-import { useEffect, useRef, useState, type AnimationEvent, type CSSProperties } from 'react'
+import { useEffect, useRef } from 'react'
 
 const PETAL_PATH = 'M32 32C18 30 15 14 32 5C49 14 46 30 32 32Z'
-const PETAL_COLORS = ['fill-petal-1', 'fill-petal-2', 'fill-petal-3']
+const PETAL_CENTER = { x: 32, y: 18.5 }
+const PETAL_BOX = 32
+const PETAL_COLOR_VARS = ['--petal-1', '--petal-2', '--petal-3']
 const PIXELS_PER_PETAL = 90
 const MIN_SPAWN_INTERVAL_MS = 100
 const MAX_PETALS = 28
 const MIN_VELOCITY = 0.3
 const FULL_RATE_VELOCITY = 1.8
+const FALL_DISTANCE_VH = 25
+const MAX_DRIFT_VW = 6
+const MAX_SWAY_PX = 60
 
 type Petal = {
-  id: number
-  style: CSSProperties
-  swayStyle: CSSProperties
-  flutterStyle: CSSProperties
+  born: number
+  x: number
+  y: number
   size: number
   color: string
+  ink: string
+  fallMs: number
+  drift: number
+  swayMs: number
+  swayPhase: number
+  sway: number
+  tilt: number
+  flutterMs: number
+  flutterDirection: 1 | -1
+  axisTilt: number
 }
 
 const random = (min: number, max: number) => min + Math.random() * (max - min)
 
-function createPetal(id: number): Petal {
+const cubicBezier = (p1: number, p2: number) => (t: number) => 3 * (1 - t) ** 2 * t * p1 + 3 * (1 - t) * t ** 2 * p2 + t ** 3
+
+const fallX = cubicBezier(0.3, 0.6)
+const fallY = cubicBezier(0.1, 1)
+
+function fallProgress(time: number) {
+  let low = 0
+  let high = 1
+  for (let i = 0; i < 12; i++) {
+    const mid = (low + high) / 2
+    if (fallX(mid) < time) low = mid
+    else high = mid
+  }
+  return fallY((low + high) / 2)
+}
+
+const easeInOutSine = (t: number) => (1 - Math.cos(Math.PI * t)) / 2
+
+const pingPong = (t: number) => {
+  const phase = t % 2
+  return phase > 1 ? 2 - phase : phase
+}
+
+function keyframe(progress: number) {
+  if (progress < 0.06) {
+    const local = progress / 0.06
+    return { travel: 0, drop: local * 2, scale: 0.4 + 0.6 * local, opacity: local }
+  }
+  const local = (progress - 0.06) / 0.94
   return {
-    id,
-    size: random(16, 28),
-    color: PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)],
-    style: {
-      left: random(-14, 14),
-      top: random(-6, 6),
-      animationDuration: `${random(1.25, 2.25)}s`,
-      '--drift': `${random(-6, 6)}vw`,
-    } as CSSProperties,
-    swayStyle: {
-      animationDuration: `${random(1.4, 2.8)}s`,
-      animationDelay: `-${random(0, 2)}s`,
-      '--sway': `${random(18, 60)}px`,
-      '--tilt': `${random(10, 35)}deg`,
-    } as CSSProperties,
-    flutterStyle: {
-      animationDuration: `${random(1.6, 4)}s`,
-      animationDirection: Math.random() < 0.5 ? 'normal' : 'reverse',
-      '--axis-x': random(0.2, 1).toFixed(2),
-      '--axis-y': random(0.2, 1).toFixed(2),
-    } as CSSProperties,
+    travel: local,
+    drop: 2 + local * (FALL_DISTANCE_VH - 2),
+    scale: 1 - 0.15 * local,
+    opacity: progress < 0.45 ? 1 : 1 - (progress - 0.45) / 0.55,
   }
 }
 
 export function FallingPetals() {
-  const [petals, setPetals] = useState<Petal[]>([])
-  const nextId = useRef(0)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const canvas = canvasRef.current
+    const context = canvas?.getContext('2d')
+    if (!canvas || !context || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const shape = new Path2D(PETAL_PATH)
+    const petals: Petal[] = []
+    let frame = 0
+    let width = 0
+    let height = 0
+    let ratio = 1
+
+    const resize = () => {
+      ratio = Math.min(window.devicePixelRatio || 1, 2)
+      width = (window.innerWidth * MAX_DRIFT_VW * 2) / 100 + MAX_SWAY_PX * 2 + 120
+      height = (window.innerHeight * (FALL_DISTANCE_VH + 4)) / 100 + 60
+      canvas.style.width = `${width}px`
+      canvas.style.height = `${height}px`
+      canvas.style.marginLeft = `${-width / 2}px`
+      canvas.width = Math.round(width * ratio)
+      canvas.height = Math.round(height * ratio)
+    }
+
+    const draw = (now: number) => {
+      context.setTransform(ratio, 0, 0, ratio, 0, 0)
+      context.clearRect(0, 0, width, height)
+      const vw = window.innerWidth / 100
+      const vh = window.innerHeight / 100
+
+      for (let i = petals.length - 1; i >= 0; i--) {
+        const petal = petals[i]
+        const progress = (now - petal.born) / petal.fallMs
+        if (progress >= 1) {
+          petals.splice(i, 1)
+          continue
+        }
+        const { travel, drop, scale, opacity } = keyframe(fallProgress(Math.max(progress, 0)))
+        const age = now - petal.born
+        const swing = easeInOutSine(pingPong(age / petal.swayMs + petal.swayPhase)) * 2 - 1
+        const flutter = (age / petal.flutterMs) * Math.PI * 2 * petal.flutterDirection
+
+        context.save()
+        context.globalAlpha = opacity
+        context.translate(width / 2 + petal.x + petal.drift * vw * travel + swing * petal.sway, 30 + petal.y + drop * vh)
+        context.rotate((swing * petal.tilt * Math.PI) / 180 + Math.sin(flutter) * petal.axisTilt)
+        context.scale((scale * petal.size * Math.cos(flutter)) / PETAL_BOX, (scale * petal.size) / PETAL_BOX)
+        context.translate(-PETAL_CENTER.x, -PETAL_CENTER.y)
+        context.fillStyle = petal.color
+        context.fill(shape)
+        context.lineWidth = (1.2 * PETAL_BOX) / (petal.size * scale)
+        context.lineJoin = 'round'
+        context.strokeStyle = petal.ink
+        context.stroke(shape)
+        context.restore()
+      }
+
+      frame = petals.length ? requestAnimationFrame(draw) : 0
+      if (!frame) context.clearRect(0, 0, width, height)
+    }
 
     let lastY = window.scrollY
     let lastTime = performance.now()
@@ -64,10 +145,7 @@ export function FallingPetals() {
       lastY = window.scrollY
       lastTime = now
 
-      const weight = Math.min(
-        Math.max((velocity - MIN_VELOCITY) / (FULL_RATE_VELOCITY - MIN_VELOCITY), 0),
-        1,
-      )
+      const weight = Math.min(Math.max((velocity - MIN_VELOCITY) / (FULL_RATE_VELOCITY - MIN_VELOCITY), 0), 1)
       distance += delta * weight
 
       if (distance < PIXELS_PER_PETAL || now - lastSpawn < MIN_SPAWN_INTERVAL_MS) return
@@ -76,47 +154,39 @@ export function FallingPetals() {
       distance = 0
       lastSpawn = now
 
-      const spawned = Array.from({ length: count }, () => createPetal(nextId.current++))
-      setPetals((current) => [...current, ...spawned].slice(-MAX_PETALS))
+      const styles = getComputedStyle(canvas)
+      for (let i = 0; i < count; i++) {
+        petals.push({
+          born: now,
+          x: random(-14, 14),
+          y: random(-6, 6),
+          size: random(16, 28),
+          color: styles.getPropertyValue(PETAL_COLOR_VARS[Math.floor(Math.random() * PETAL_COLOR_VARS.length)]),
+          ink: styles.getPropertyValue('--rose-ink'),
+          fallMs: random(1250, 2250),
+          drift: random(-MAX_DRIFT_VW, MAX_DRIFT_VW),
+          swayMs: random(1400, 2800),
+          swayPhase: random(0, 2),
+          sway: random(18, MAX_SWAY_PX),
+          tilt: random(10, 35),
+          flutterMs: random(1600, 4000),
+          flutterDirection: Math.random() < 0.5 ? 1 : -1,
+          axisTilt: random(0.05, 0.25),
+        })
+      }
+      petals.splice(0, Math.max(0, petals.length - MAX_PETALS))
+      if (!frame) frame = requestAnimationFrame(draw)
     }
 
+    resize()
+    window.addEventListener('resize', resize, { passive: true })
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('resize', resize)
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(frame)
+    }
   }, [])
 
-  const removePetal = (id: number) => (event: AnimationEvent) => {
-    if (event.target !== event.currentTarget) return
-    setPetals((current) => current.filter((petal) => petal.id !== id))
-  }
-
-  return (
-    <div className="pointer-events-none absolute top-1/2 left-1/2">
-      {petals.map((petal) => (
-        <span
-          key={petal.id}
-          className="petal-fall absolute"
-          style={petal.style}
-          onAnimationEnd={removePetal(petal.id)}
-        >
-          <span className="petal-sway block" style={petal.swayStyle}>
-            <svg
-              viewBox="12 2 40 32"
-              width={petal.size}
-              height={petal.size}
-              className="petal-flutter block drop-shadow-sm"
-              style={petal.flutterStyle}
-            >
-              <path
-                d={PETAL_PATH}
-                className={`${petal.color} stroke-rose-ink`}
-                strokeWidth="1.2"
-                strokeLinejoin="round"
-                vectorEffect="non-scaling-stroke"
-              />
-            </svg>
-          </span>
-        </span>
-      ))}
-    </div>
-  )
+  return <canvas ref={canvasRef} aria-hidden="true" className="pointer-events-none absolute top-1/2 left-1/2 -mt-[30px]" />
 }

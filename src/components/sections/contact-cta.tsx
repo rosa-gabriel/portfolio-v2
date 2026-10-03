@@ -5,7 +5,7 @@ export function ContactCta() {
   const { t } = useTranslation()
 
   return (
-    <section id="contact" className="mx-auto max-w-5xl px-4 py-20 sm:px-6">
+    <section id="contact" className="render-on-view mx-auto max-w-5xl px-4 py-20 sm:px-6 [--section-estimate:400px]">
       <p className="text-kanagawa-blue text-sm">{t('contact.eyebrow')}</p>
       <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
         {t('contact.title')}

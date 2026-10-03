@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Bug, RotateCcw, Snail, Wrench } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
+import { useCachedTranslation } from '@/i18n/use-cached-translation'
 import { cn } from '@/lib/utils'
 import { addToken, advance, createEngine, float, random, type Box, type Engine, type Point, type Tone } from './engine'
 import { FlowAction, FlowSection } from './flow-section'
@@ -237,7 +237,7 @@ function chartPath(samples: Sample[], chart: Box) {
 }
 
 export function ObservabilityFlow() {
-  const { t } = useTranslation()
+  const { t } = useCachedTranslation()
   const [sim, setSim] = useState(() => createSim('grafana'))
   const { containerRef, vertical: isVertical, refresh } = useFlowLoop((dt, autoplay) => step(sim, dt, autoplay))
   const layout = isVertical ? vertical : horizontal

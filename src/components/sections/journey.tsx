@@ -139,7 +139,7 @@ export function Journey() {
       id="journey"
       data-visible={inView || undefined}
       aria-label={t('journey.label')}
-      className="mx-auto max-w-5xl px-4 py-16 sm:px-6"
+      className="render-on-view mx-auto max-w-5xl px-4 py-16 sm:px-6 [--section-estimate:820px]"
     >
       <p className="text-sm text-kanagawa-blue">{t('journey.eyebrow')}</p>
       <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t('journey.title')}</h2>

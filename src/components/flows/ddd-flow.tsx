@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Database, Power, RotateCcw, ShoppingCart, Wrench } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
+import { useCachedTranslation } from '@/i18n/use-cached-translation'
 import {
   addToken,
   advance,
@@ -226,7 +226,7 @@ function resolver(layout: Layout) {
 }
 
 export function DddFlow() {
-  const { t } = useTranslation()
+  const { t } = useCachedTranslation()
   const [sim, setSim] = useState(() => createSim('ddd'))
   const { containerRef, vertical: isVertical, refresh } = useFlowLoop((dt, autoplay) => step(sim, dt, autoplay))
   const layout = isVertical ? vertical : horizontal

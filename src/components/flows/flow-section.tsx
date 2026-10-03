@@ -48,7 +48,7 @@ export function FlowSection<M extends string>({
   children,
 }: FlowSectionProps<M>) {
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+    <section className="render-on-view mx-auto max-w-5xl px-4 py-16 sm:px-6">
       <p className="text-kanagawa-blue text-sm">{eyebrow}</p>
       <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>
       <p className="mt-2 max-w-2xl text-muted-foreground">{subtitle}</p>

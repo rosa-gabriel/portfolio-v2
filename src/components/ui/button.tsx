@@ -40,6 +40,22 @@ const buttonVariants = cva(
   }
 )
 
+const classCache = new Map<string, string>()
+
+function buttonClassName(
+  variant: VariantProps<typeof buttonVariants>["variant"],
+  size: VariantProps<typeof buttonVariants>["size"],
+  className?: string
+) {
+  const key = `${variant}|${size}|${className ?? ""}`
+  let value = classCache.get(key)
+  if (value === undefined) {
+    value = cn(buttonVariants({ variant, size, className }))
+    classCache.set(key, value)
+  }
+  return value
+}
+
 function Button({
   className,
   variant = "default",
@@ -57,7 +73,7 @@ function Button({
       data-slot="button"
       data-variant={variant}
       data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={buttonClassName(variant, size, className)}
       {...props}
     />
   )

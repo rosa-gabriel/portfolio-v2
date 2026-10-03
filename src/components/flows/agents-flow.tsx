@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { GitMerge, ListPlus, ListTodo, Plus, RotateCcw, User } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
+import { useCachedTranslation } from '@/i18n/use-cached-translation'
 import { addToken, advance, createEngine, schedule, type Box, type Engine, type Point } from './engine'
 import { FlowAction, FlowSection } from './flow-section'
 import { Connectors, Floaters, HaloLabel, Icon, Label, Logo, Node, Ring, Tokens, centerOf } from './primitives'
@@ -215,7 +215,7 @@ const progressOf = (sim: Sim, work: Work | null) =>
   work && sim.time >= work.start ? (sim.time - work.start) / (work.end - work.start) : null
 
 export function AgentsFlow() {
-  const { t } = useTranslation()
+  const { t } = useCachedTranslation()
   const [sim, setSim] = useState(() => createSim('agents'))
   const { containerRef, vertical: isVertical, refresh } = useFlowLoop((dt, autoplay) => step(sim, dt, autoplay))
   const layout = isVertical ? vertical : horizontal

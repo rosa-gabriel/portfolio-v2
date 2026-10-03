@@ -8,6 +8,7 @@ export function useCarousel(count: number, autoAdvanceMs: number) {
   const [positions, setPositions] = useState(count)
   const [seen, setSeen] = useState<Set<number>>(() => new Set())
   const [paused, setPaused] = useState(false)
+  const [onScreen, setOnScreen] = useState(false)
 
   const step = useCallback(() => {
     const scroller = scrollerRef.current
@@ -62,19 +63,22 @@ export function useCarousel(count: number, autoAdvanceMs: number) {
       { root: scroller, threshold: 0.6 },
     )
     Array.from(scroller.children).forEach((child) => observer.observe(child))
+    const screen = new IntersectionObserver(([entry]) => setOnScreen(entry.isIntersecting))
+    screen.observe(scroller)
 
     return () => {
       scroller.removeEventListener('scroll', onScroll)
       resize.disconnect()
       observer.disconnect()
+      screen.disconnect()
     }
   }, [count, step])
 
   useEffect(() => {
-    if (paused || positions <= 1 || prefersReducedMotion()) return
+    if (paused || !onScreen || positions <= 1 || prefersReducedMotion()) return
     const timer = window.setInterval(() => move(1), autoAdvanceMs)
     return () => window.clearInterval(timer)
-  }, [paused, positions, move, autoAdvanceMs])
+  }, [paused, onScreen, positions, move, autoAdvanceMs])
 
   const pauseHandlers = {
     onMouseEnter: () => setPaused(true),

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Clock, Database, History, Power, RotateCcw, Send, Zap } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
+import { useCachedTranslation } from '@/i18n/use-cached-translation'
 import { Button } from '@/components/ui/button'
 import { TechMark } from '@/components/tech-mark'
 import { TerminalWindow } from '@/components/terminal-window'
@@ -56,7 +56,7 @@ const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 
 const easeOut = (t: number) => 1 - (1 - t) ** 3
 
 export function ArchitectureFlow() {
-  const { t } = useTranslation()
+  const { t } = useCachedTranslation()
   const containerRef = useRef<HTMLDivElement>(null)
   const [sim, setSim] = useState(() => createSimulation('kafka'))
   const [, setFrame] = useState(0)
@@ -145,7 +145,7 @@ export function ArchitectureFlow() {
   ))
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+    <section className="render-on-view mx-auto max-w-5xl px-4 py-16 sm:px-6">
       <p className="text-kanagawa-blue text-sm">{t('arch.eyebrow')}</p>
       <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t('arch.title')}</h2>
       <p className="mt-2 max-w-2xl text-muted-foreground">{t('arch.subtitle')}</p>

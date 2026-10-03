@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Building2, Cloud, Rocket, RotateCcw, ServerCrash, TrendingUp } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
+import { useCachedTranslation } from '@/i18n/use-cached-translation'
 import { cn } from '@/lib/utils'
 import { addToken, advance, createEngine, float, random, schedule, since, type Box, type Engine, type Point } from './engine'
 import { FlowAction, FlowSection } from './flow-section'
@@ -333,7 +333,7 @@ function resolver(layout: Layout, sim: Sim) {
 }
 
 export function K8sFlow() {
-  const { t } = useTranslation()
+  const { t } = useCachedTranslation()
   const [sim, setSim] = useState(() => createSim('k8s'))
   const { containerRef, vertical: isVertical, refresh } = useFlowLoop((dt, autoplay) => step(sim, dt, autoplay || sim.time < sim.boostUntil))
   const layout = isVertical ? vertical : horizontal

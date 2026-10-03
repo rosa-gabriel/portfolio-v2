@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Database, LayoutDashboard, LogIn, LogOut, RotateCcw, Server, Timer, User } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
+import { useCachedTranslation } from '@/i18n/use-cached-translation'
 import { addToken, advance, createEngine, float, type Box, type Engine, type Point, type Tone } from './engine'
 import { FlowAction, FlowSection } from './flow-section'
 import { Connectors, Floaters, HaloLabel, Icon, Label, Logo, Node, Tokens, centerOf } from './primitives'
@@ -264,7 +264,7 @@ function resolver(layout: Layout) {
 }
 
 export function AuthFlow() {
-  const { t } = useTranslation()
+  const { t } = useCachedTranslation()
   const [sim, setSim] = useState(() => createSim('sso'))
   const { containerRef, vertical: isVertical, refresh } = useFlowLoop((dt) => advance(sim, dt))
   const layout = isVertical ? vertical : horizontal

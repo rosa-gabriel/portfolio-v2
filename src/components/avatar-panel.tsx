@@ -12,12 +12,20 @@ export function AvatarPanel() {
           <span className="text-[9px]">/avatar.jpg</span>
         </div>
       ) : (
-        <img
-          src="/avatar.jpeg"
-          alt="Gabriel Rosa"
-          className="size-full object-cover"
-          onError={() => setFailed(true)}
-        />
+        <picture>
+          <source srcSet="/avatar.avif" type="image/avif" />
+          <source srcSet="/avatar.webp" type="image/webp" />
+          <img
+            src="/avatar.jpeg"
+            alt="Gabriel Rosa"
+            width={112}
+            height={112}
+            decoding="async"
+            fetchPriority="high"
+            className="size-full object-cover"
+            onError={() => setFailed(true)}
+          />
+        </picture>
       )}
     </div>
   )
