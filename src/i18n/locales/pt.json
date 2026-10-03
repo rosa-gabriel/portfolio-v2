@@ -298,36 +298,20 @@
     "goTo": "Ir para o destaque {{n}}",
     "items": {
       "h1": {
-        "headline": "~900 desenvolvedores",
-        "detail": "em uma plataforma interna de governança de APIs e sistemas"
+        "headline": "R$12 mi economizados",
+        "detail": "em custos ao trocar a stack de autenticação da WEG, em um único projeto"
       },
       "h2": {
-        "headline": "300+ bancos",
-        "detail": "provisionados em self-service, do Postgres ao Redis"
+        "headline": "1.000+ devs",
+        "detail": "desenvolvedores gerenciados e guiados pela nossa plataforma interna na WEG"
       },
       "h3": {
-        "headline": "Tempo real",
-        "detail": "processamento e enriquecimento de eventos com Flink"
+        "headline": "1 dia → 200 ms",
+        "detail": "de atraso na sincronização de dados, trocando cron jobs por arquitetura orientada a eventos"
       },
       "h4": {
-        "headline": "Integrações desacopladas",
-        "detail": "self-service, em toda a organização"
-      },
-      "h5": {
-        "headline": "Micro-gateways",
-        "detail": "com Kong, on-premise e na nuvem"
-      },
-      "h6": {
-        "headline": "Menos retrabalho",
-        "detail": "padrões de integração compartilhados por todos os times"
-      },
-      "h7": {
-        "headline": "Nuvem híbrida",
-        "detail": "replicação entre clusters on-premise e na nuvem"
-      },
-      "h8": {
-        "headline": "API gateway em Rust",
-        "detail": "alta performance, confiabilidade de produção"
+        "headline": "600+ bancos de dados",
+        "detail": "provisionados e gerenciados em self-service pela nossa plataforma"
       }
     },
     "readArticle": "Ler artigo"
@@ -549,7 +533,7 @@
       "streaming": {
         "title": "Plataforma de streaming de eventos",
         "summary": "Uma plataforma interna de streaming, on-premise, que permite a qualquer time publicar e consumir eventos sem integrações ponto a ponto.",
-        "impact": "Integrações desacopladas e self-service",
+        "impact": "Sincronização: 1 dia → 200 ms",
         "context": "As integrações corporativas precisavam migrar para um modelo orientado a eventos que escalasse e que os times pudessem adotar sozinhos.",
         "role": "Liderança técnica em Arquitetura de Sistemas, conduzindo a arquitetura e a implementação da plataforma.",
         "decisions": [
@@ -560,6 +544,7 @@
           "Uma camada low-code que esconde a complexidade de eventos dos times de produto"
         ],
         "outcomes": [
+          "Atraso de sincronização de dados reduzido de 1 dia para 200 ms, trocando cron jobs por integração orientada a eventos",
           "Integrações desacopladas e self-service em toda a organização",
           "Analytics em streaming e enriquecimento de dados em tempo real",
           "Integração orientada a eventos acessível para times sem experiência em streaming"
@@ -567,9 +552,9 @@
       },
       "devsuite": {
         "title": "Developers Suite",
-        "summary": "Uma plataforma interna de desenvolvimento para governança de APIs e sistemas, usada em um ecossistema de ~900 desenvolvedores.",
-        "impact": "~900 desenvolvedores",
-        "context": "Com ~900 desenvolvedores construindo integrações, os times duplicavam trabalho e tinham dificuldade para descobrir quais sistemas e APIs já existiam.",
+        "summary": "Uma plataforma interna de desenvolvimento para governança de APIs e sistemas, que hoje gerencia e guia mais de 1.000 desenvolvedores.",
+        "impact": "1.000+ desenvolvedores",
+        "context": "Com centenas de desenvolvedores construindo integrações, os times duplicavam trabalho e tinham dificuldade para descobrir quais sistemas e APIs já existiam.",
         "role": "Pesquisador em arquitetura de software no time de Arquitetura de Sistemas e Governança de Dados. Projetei a plataforma.",
         "decisions": [
           "Uma plataforma única e centralizada de governança de APIs e sistemas",
@@ -577,6 +562,7 @@
           "Descoberta como funcionalidade central: encontrar sistemas antes de construir novos"
         ],
         "outcomes": [
+          "Mais de 1.000 desenvolvedores gerenciados e guiados pela plataforma",
           "Menos trabalho duplicado entre os times",
           "Padrões de integração consistentes em todo o ecossistema",
           "Sistemas e APIs fáceis de descobrir"
@@ -585,7 +571,7 @@
       "provisioning": {
         "title": "Infraestrutura self-service",
         "summary": "Uma plataforma que provisiona bancos de dados e ambientes Kubernetes sob demanda, sem chamados.",
-        "impact": "300+ bancos de dados",
+        "impact": "600+ bancos de dados",
         "context": "Provisionar bancos e ambientes manualmente era lento e gerava esforço operacional a cada novo projeto.",
         "role": "Construí a plataforma de provisionamento e os pipelines de CI/CD por trás dela.",
         "decisions": [
@@ -595,7 +581,7 @@
           "Deploys automatizados no Kubernetes com foco em confiabilidade e consistência"
         ],
         "outcomes": [
-          "Mais de 300 bancos de dados provisionados e gerenciados",
+          "Mais de 600 bancos de dados provisionados e gerenciados pela plataforma",
           "Menor tempo de provisionamento",
           "Menos esforço operacional"
         ]
@@ -603,7 +589,7 @@
       "gateway": {
         "title": "API gateway, identidade e observabilidade",
         "summary": "Uma porta de entrada compartilhada para as APIs corporativas, com autenticação padronizada e visibilidade de ponta a ponta.",
-        "impact": "Micro-gateways, nuvem e on-premise",
+        "impact": "R$12 mi economizados",
         "context": "Cada sistema reimplementava sua própria lógica de integração, segurança e monitoramento.",
         "role": "Arquitetei a plataforma de API gateway e padronizei autenticação e observabilidade.",
         "decisions": [
@@ -613,6 +599,7 @@
           "OpenTelemetry com logs, métricas e tracing centralizados no Grafana"
         ],
         "outcomes": [
+          "R$12 milhões de economia com a troca da stack de autenticação",
           "Menos lógica de integração duplicada entre sistemas",
           "Comunicação segura entre sistemas",
           "Mais visibilidade e depuração mais rápida"

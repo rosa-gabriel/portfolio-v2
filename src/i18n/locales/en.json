@@ -298,36 +298,20 @@
     "goTo": "Go to highlight {{n}}",
     "items": {
       "h1": {
-        "headline": "~900 developers",
-        "detail": "on one internal platform for APIs and system governance"
+        "headline": "R$12M saved",
+        "detail": "in costs (BRL) by replacing WEG's authentication stack, in a single project"
       },
       "h2": {
-        "headline": "300+ databases",
-        "detail": "provisioned self-service, from Postgres to Redis"
+        "headline": "1,000+ developers",
+        "detail": "managed and guided by our internal platform at WEG"
       },
       "h3": {
-        "headline": "Real-time",
-        "detail": "event processing and enrichment with Flink"
+        "headline": "1 day → 200 ms",
+        "detail": "data sync delay, after moving from cron jobs to an event-driven architecture"
       },
       "h4": {
-        "headline": "Decoupled integrations",
-        "detail": "self-service, across the whole organization"
-      },
-      "h5": {
-        "headline": "Micro-gateways",
-        "detail": "on Kong, on-premise and in the cloud"
-      },
-      "h6": {
-        "headline": "Less duplication",
-        "detail": "integration patterns shared by every team"
-      },
-      "h7": {
-        "headline": "Hybrid cloud",
-        "detail": "cross-cluster replication between on-premise and cloud"
-      },
-      "h8": {
-        "headline": "Rust API gateway",
-        "detail": "high performance, production-grade reliability"
+        "headline": "600+ databases",
+        "detail": "provisioned and managed self-service by our platform"
       }
     },
     "readArticle": "Read article"
@@ -549,7 +533,7 @@
       "streaming": {
         "title": "Event streaming platform",
         "summary": "An internal, on-premise streaming platform that lets any team publish and consume events without custom point-to-point integrations.",
-        "impact": "Decoupled, self-service integrations",
+        "impact": "Data sync: 1 day → 200 ms",
         "context": "Enterprise integrations needed to move toward an event-driven model that scales and that teams can adopt on their own.",
         "role": "Technical lead within Systems Architecture, leading the platform's architecture and implementation.",
         "decisions": [
@@ -560,6 +544,7 @@
           "A low-code layer that hides event-driven complexity from product teams"
         ],
         "outcomes": [
+          "Data sync delay cut from 1 day to 200 ms by replacing cron jobs with event-driven integration",
           "Integrations across the organization become decoupled and self-service",
           "Streaming analytics and data enrichment in real time",
           "Event-driven integration open to teams without streaming expertise"
@@ -567,9 +552,9 @@
       },
       "devsuite": {
         "title": "Developers Suite",
-        "summary": "An internal developer platform for API and system governance, used across an ecosystem of ~900 developers.",
-        "impact": "~900 developers",
-        "context": "With ~900 developers building integrations, teams duplicated work and had a hard time finding which systems and APIs already existed.",
+        "summary": "An internal developer platform for API and system governance, now managing and guiding 1,000+ developers.",
+        "impact": "1,000+ developers",
+        "context": "With hundreds of developers building integrations, teams duplicated work and had a hard time finding which systems and APIs already existed.",
         "role": "Software architecture researcher in the Systems Architecture and Data Governance team. Designed the platform.",
         "decisions": [
           "A single, centralized platform for API and system governance",
@@ -577,6 +562,7 @@
           "Discoverability as a first-class feature: find systems before building new ones"
         ],
         "outcomes": [
+          "1,000+ developers managed and guided by the platform",
           "Less duplicated work across teams",
           "Consistent integration patterns across the ecosystem",
           "Systems and APIs that are easy to discover"
@@ -585,7 +571,7 @@
       "provisioning": {
         "title": "Self-service infrastructure",
         "summary": "A platform that provisions databases and Kubernetes environments on demand, without tickets.",
-        "impact": "300+ databases",
+        "impact": "600+ databases",
         "context": "Provisioning databases and environments by hand was slow and added operational overhead for every new project.",
         "role": "Built the provisioning platform and the CI/CD pipelines behind it.",
         "decisions": [
@@ -595,7 +581,7 @@
           "Automated Kubernetes deployments focused on reliability and consistency"
         ],
         "outcomes": [
-          "300+ databases provisioned and managed",
+          "600+ databases provisioned and managed by the platform",
           "Shorter provisioning time",
           "Lower operational overhead"
         ]
@@ -603,7 +589,7 @@
       "gateway": {
         "title": "API gateway, identity and observability",
         "summary": "A shared front door for enterprise APIs, with standardized authentication and end-to-end visibility.",
-        "impact": "Micro-gateways, cloud and on-premise",
+        "impact": "R$12M saved",
         "context": "Each system reimplemented its own integration, security and monitoring logic.",
         "role": "Architected the API gateway platform and standardized auth and observability.",
         "decisions": [
@@ -613,6 +599,7 @@
           "OpenTelemetry with centralized logs, metrics and tracing in Grafana"
         ],
         "outcomes": [
+          "R$12M (BRL) in cost savings from replacing the authentication stack",
           "Less integration logic duplicated across systems",
           "Secure system-to-system communication",
           "Better visibility and faster debugging"
