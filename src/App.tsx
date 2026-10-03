@@ -1,13 +1,22 @@
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect, type ComponentType } from 'react'
 import { useTranslation } from 'react-i18next'
-import { StatusBar } from '@/components/status-bar'
+import { ArchitectureFlow } from '@/components/architecture/architecture-flow'
 import { Footer } from '@/components/footer'
-import { Hero } from '@/components/sections/hero'
-import { FeatureSection } from '@/components/sections/feature-section'
-import { Projects } from '@/components/sections/projects'
 import { ContactCta } from '@/components/sections/contact-cta'
-import { TerminalWindow } from '@/components/terminal-window'
+import { Hero } from '@/components/sections/hero'
+import { Projects } from '@/components/sections/projects'
+import { StatusBar } from '@/components/status-bar'
 import { VineMargins } from '@/components/vine-margins'
+
+const lazyFlow = <K extends string>(load: () => Promise<Record<K, ComponentType>>, name: K) =>
+  lazy(() => load().then((module) => ({ default: module[name] })))
+
+const GatewayFlow = lazyFlow(() => import('@/components/flows/gateway-flow'), 'GatewayFlow')
+const AuthFlow = lazyFlow(() => import('@/components/flows/auth-flow'), 'AuthFlow')
+const K8sFlow = lazyFlow(() => import('@/components/flows/k8s-flow'), 'K8sFlow')
+const ObservabilityFlow = lazyFlow(() => import('@/components/flows/observability-flow'), 'ObservabilityFlow')
+const DddFlow = lazyFlow(() => import('@/components/flows/ddd-flow'), 'DddFlow')
+const AgentsFlow = lazyFlow(() => import('@/components/flows/agents-flow'), 'AgentsFlow')
 
 function App() {
   const { t, i18n } = useTranslation()
@@ -22,46 +31,15 @@ function App() {
       <StatusBar />
       <main className="flex-1">
         <Hero />
-
-        <FeatureSection
-          index={t('section.streamingIndex')}
-          eyebrow={t('section.streamingEyebrow')}
-          title={t('section.streamingTitle')}
-          points={[
-            t('section.streamingPoint1'),
-            t('section.streamingPoint2'),
-            t('section.streamingPoint3'),
-          ]}
-          linkLabel={t('section.streamingLink')}
-          visual={
-            <TerminalWindow title="pipeline.json">
-              <pre className="whitespace-pre-wrap">
-                {`{\n  "streaming": "kafka",\n  "processing": "flink",\n  "messaging": "rabbitmq"\n}`}
-              </pre>
-            </TerminalWindow>
-          }
-        />
-
-        <FeatureSection
-          index={t('section.platformIndex')}
-          eyebrow={t('section.platformEyebrow')}
-          title={t('section.platformTitle')}
-          points={[
-            t('section.platformPoint1'),
-            t('section.platformPoint2'),
-            t('section.platformPoint3'),
-          ]}
-          linkLabel={t('section.platformLink')}
-          reverse
-          visual={
-            <TerminalWindow title="status.log">
-              <pre className="whitespace-pre-wrap text-muted-foreground">
-                {`[ok] gateway: kong on kubernetes\n[ok] auth: oidc + keycloak\n[ok] tracing: opentelemetry`}
-              </pre>
-            </TerminalWindow>
-          }
-        />
-
+        <ArchitectureFlow />
+        <Suspense fallback={<div className="min-h-svh" />}>
+          <GatewayFlow />
+          <AuthFlow />
+          <K8sFlow />
+          <ObservabilityFlow />
+          <DddFlow />
+          <AgentsFlow />
+        </Suspense>
         <Projects />
         <ContactCta />
       </main>
