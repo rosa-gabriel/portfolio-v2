@@ -419,6 +419,35 @@
   }
 }
 
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes scroll-cue-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.scroll-cue {
+  animation:
+    scroll-cue-in 700ms ease-out 1.2s backwards,
+    scroll-cue 2.2s ease-in-out 1.9s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue {
+    animation: none;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

@@ -4,6 +4,7 @@ import { ArchitectureFlow } from '@/components/architecture/architecture-flow'
 import { Footer } from '@/components/footer'
 import { ContactCta } from '@/components/sections/contact-cta'
 import { Hero } from '@/components/sections/hero'
+import { ScrollCue } from '@/components/scroll-cue'
 import { Highlights } from '@/components/sections/highlights'
 import { StatusBar } from '@/components/status-bar'
 import { VineMargins } from '@/components/vine-margins'
@@ -32,9 +33,18 @@ function App() {
       <VineMargins />
       <StatusBar />
       <main className="flex-1">
-        <div className="flex flex-col justify-center lg:min-h-[calc(100svh-3rem)]">
-          <Hero />
-          <Highlights />
+        <div className="flex flex-col lg:min-h-[calc(100svh-3rem)]">
+          <div className="flex flex-1 flex-col justify-center">
+            <Hero />
+            <Highlights />
+          </div>
+          <ScrollCue targetId="content" />
+        </div>
+        <div id="content" className="scroll-mt-12">
+          <Suspense fallback={<div className="min-h-svh" />}>
+            <Journey />
+            <Certificates />
+          </Suspense>
         </div>
         <ArchitectureFlow />
         <Suspense fallback={<div className="min-h-svh" />}>
@@ -44,8 +54,6 @@ function App() {
           <ObservabilityFlow />
           <DddFlow />
           <AuthFlow />
-          <Journey />
-          <Certificates />
         </Suspense>
         <ContactCta />
       </main>

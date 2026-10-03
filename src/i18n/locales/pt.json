@@ -9,10 +9,11 @@
     "terminalTitle": "sobre.sh",
     "fieldOs": "Arquiteto de Sistemas Escaláveis @ WEG",
     "fieldShell": "Go · Rust · Java · Javascript · Kafka · Kubernetes",
-    "fieldHost": "Jaraguá do Sul, BR"
+    "fieldHost": "Jaraguá do Sul, BR",
+    "scrollDown": "Rolar para o conteúdo"
   },
   "arch": {
-    "eyebrow": "01/ streaming",
+    "eyebrow": "03/ streaming",
     "title": "Lote ou streaming?",
     "subtitle": "Duas formas de alimentar um data lake, lado a lado. Um ETL em lote, em que um cron job faz carga completa da tabela de origem na camada raw de tempos em tempos, e streaming, em que Kafka e Flink limpam os eventos em tempo real, em paralelo, direto na camada silver.",
     "goal1": "Envie alguns eventos e acompanhe de ponta a ponta.",
@@ -70,7 +71,7 @@
     "reset": "Limpar"
   },
   "gateway": {
-    "eyebrow": "02/ api gateway",
+    "eyebrow": "04/ api gateway",
     "title": "Uma porta, com escudo",
     "subtitle": "O Kong Gateway fica na frente de todos os serviços. Ele autentica, limita a taxa e roteia cada requisição, então os serviços por trás dele só recebem tráfego limpo e esperado.",
     "goal1": "Envie algumas requisições e veja o Kong rotear.",
@@ -103,7 +104,7 @@
     }
   },
   "auth": {
-    "eyebrow": "07/ identidade",
+    "eyebrow": "09/ identidade",
     "title": "Faça login uma vez, em tudo",
     "subtitle": "O Keycloak fala OpenID Connect: as aplicações delegam a autenticação a um único provedor de identidade e recebem tokens assinados, que qualquer API consegue verificar sozinha.",
     "goal1": "Faça login no portal e depois abra o dashboard.",
@@ -150,7 +151,7 @@
     }
   },
   "k8s": {
-    "eyebrow": "04/ kubernetes",
+    "eyebrow": "06/ kubernetes",
     "title": "A mesma app, na nuvem e on-premise",
     "subtitle": "O Kubernetes roda os mesmos manifestos num cluster na nuvem e num cluster on-premise. Ele escala com o tráfego, se recupera sozinho quando uma máquina morre e publica versões novas sem downtime.",
     "goal1": "Dispare um pico de tráfego nos dois modos e veja as réplicas.",
@@ -185,7 +186,7 @@
     }
   },
   "obs": {
-    "eyebrow": "05/ observabilidade",
+    "eyebrow": "07/ observabilidade",
     "title": "Veja o problema antes do usuário",
     "subtitle": "Os serviços emitem métricas, logs e traces via OpenTelemetry, e o Grafana transforma isso em dashboards e alertas ao vivo. A diferença aparece em um número: quanto tempo leva para perceber.",
     "goal1": "Deixe o payments lento e veja a rapidez com que cada modo percebe.",
@@ -216,7 +217,7 @@
     }
   },
   "ddd": {
-    "eyebrow": "06/ domain-driven design",
+    "eyebrow": "08/ domain-driven design",
     "title": "Fronteiras que seguem o negócio",
     "subtitle": "Domain-driven design divide o sistema em contextos delimitados, cada um com seu próprio modelo e linguagem, conversando por eventos de domínio em vez de tabelas compartilhadas.",
     "goal1": "Faça alguns pedidos e acompanhe os eventos de domínio.",
@@ -258,7 +259,7 @@
     }
   },
   "agents": {
-    "eyebrow": "03/ engenharia com ia",
+    "eyebrow": "05/ engenharia com ia",
     "title": "Mais mãos, o mesmo critério",
     "subtitle": "Eu divido o trabalho em tarefas bem definidas e entrego para agentes do Claude Code, cada um no seu próprio git worktree. Eles implementam em paralelo; eu fico no design e reviso cada mudança antes de ir para produção.",
     "goal1": "Adicione um lote de tarefas e resolva sozinho.",
@@ -330,7 +331,7 @@
     }
   },
   "journey": {
-    "eyebrow": "08/ trajetória",
+    "eyebrow": "01/ trajetória",
     "title": "Trabalho e estudo, lado a lado",
     "subtitle": "Indústria e academia sempre andaram em paralelo para mim. Uma trilha alimenta a outra: problemas reais na WEG viram perguntas de pesquisa, e a pesquisa molda como eu construo.",
     "windowTitle": "timeline.log",
@@ -519,11 +520,14 @@
     }
   },
   "certificates": {
-    "eyebrow": "09/ certificados",
+    "eyebrow": "02/ certificados",
     "title": "Credenciais extras",
     "subtitle": "Cursos e certificações que conquistei pelo caminho.",
     "issued": "emitido",
     "verify": "Verificar credencial",
-    "label": "Certificados"
+    "label": "Certificados",
+    "previous": "Certificado anterior",
+    "next": "Próximo certificado",
+    "goTo": "Ir para o certificado {{n}}"
   }
 }

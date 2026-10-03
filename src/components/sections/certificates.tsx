@@ -1,12 +1,15 @@
 import type { CSSProperties } from 'react'
 import { Award, ArrowUpRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { CarouselArrows, CarouselDots } from '@/components/carousel-controls'
+import { useCarousel } from '@/hooks/use-carousel'
 import { useInView } from '@/hooks/use-in-view'
 import { certificates } from '@/lib/certificates'
 
 export function Certificates() {
   const { t, i18n } = useTranslation()
   const [sectionRef, inView] = useInView<HTMLElement>(0.15)
+  const { scrollerRef, active, positions, move, scrollToIndex, pauseHandlers } = useCarousel(certificates.length, 5000)
   const formatter = new Intl.DateTimeFormat(i18n.resolvedLanguage ?? i18n.language, { month: 'short', year: 'numeric' })
 
   return (
@@ -14,19 +17,35 @@ export function Certificates() {
       ref={sectionRef}
       id="certificates"
       data-visible={inView || undefined}
+      aria-roledescription="carousel"
       aria-label={t('certificates.label')}
       className="mx-auto max-w-5xl px-4 py-16 sm:px-6"
+      {...pauseHandlers}
     >
       <p className="text-sm text-kanagawa-blue">{t('certificates.eyebrow')}</p>
-      <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t('certificates.title')}</h2>
-      <p className="mt-2 max-w-2xl text-muted-foreground">{t('certificates.subtitle')}</p>
+      <div className="flex items-end justify-between gap-4">
+        <div>
+          <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t('certificates.title')}</h2>
+          <p className="mt-2 max-w-2xl text-muted-foreground">{t('certificates.subtitle')}</p>
+        </div>
+        <CarouselArrows previousLabel={t('certificates.previous')} nextLabel={t('certificates.next')} onMove={move} />
+      </div>
 
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div
+        ref={scrollerRef}
+        className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         {certificates.map((certificate, index) => {
           const [year, month] = certificate.issued.split('-').map(Number)
           const Wrapper = certificate.credentialUrl ? 'a' : 'div'
           return (
-            <li key={certificate.id} className="cert-card" style={{ '--i': index } as CSSProperties}>
+            <article
+              key={certificate.id}
+              data-index={index}
+              aria-roledescription="slide"
+              className="cert-card w-[85%] flex-none snap-start sm:w-[calc(50%-0.5rem)] lg:w-[calc((100%-2rem)/3)]"
+              style={{ '--i': index } as CSSProperties}
+            >
               <Wrapper
                 {...(certificate.credentialUrl && {
                   href: certificate.credentialUrl,
@@ -62,10 +81,17 @@ export function Certificates() {
                   </span>
                 </div>
               </Wrapper>
-            </li>
+            </article>
           )
         })}
-      </ul>
+      </div>
+
+      <CarouselDots
+        positions={positions}
+        active={active}
+        onSelect={scrollToIndex}
+        label={(index) => t('certificates.goTo', { n: index + 1 })}
+      />
     </section>
   )
 }

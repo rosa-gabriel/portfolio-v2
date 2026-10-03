@@ -9,10 +9,11 @@
     "terminalTitle": "about.sh",
     "fieldOs": "Scalable Systems Architect @ WEG",
     "fieldShell": "Go · Rust · Java · Javascript · Kafka · Kubernetes",
-    "fieldHost": "Jaraguá do Sul, BR"
+    "fieldHost": "Jaraguá do Sul, BR",
+    "scrollDown": "Scroll to content"
   },
   "arch": {
-    "eyebrow": "01/ streaming",
+    "eyebrow": "03/ streaming",
     "title": "Batch or streaming?",
     "subtitle": "Two ways to feed a data lake, running side by side. A batch ETL where a cron job full-loads the source table into the raw layer on a schedule, and streaming, where Kafka and Flink clean events in real time, in parallel, straight into the silver layer.",
     "goal1": "Send a few events and follow them end to end.",
@@ -70,7 +71,7 @@
     "reset": "Reset"
   },
   "gateway": {
-    "eyebrow": "02/ api gateway",
+    "eyebrow": "04/ api gateway",
     "title": "One door, with a shield",
     "subtitle": "Kong Gateway sits in front of every service. It authenticates, rate limits and routes each request, so the services behind it only ever see clean, expected traffic.",
     "goal1": "Send a few requests and watch Kong route them.",
@@ -103,7 +104,7 @@
     }
   },
   "auth": {
-    "eyebrow": "07/ identity",
+    "eyebrow": "09/ identity",
     "title": "Log in once, everywhere",
     "subtitle": "Keycloak speaks OpenID Connect: apps hand authentication to one identity provider and get signed tokens back, which any API can verify on its own.",
     "goal1": "Log in to the portal, then open the dashboard.",
@@ -150,7 +151,7 @@
     }
   },
   "k8s": {
-    "eyebrow": "04/ kubernetes",
+    "eyebrow": "06/ kubernetes",
     "title": "Same app, cloud and on-premise",
     "subtitle": "Kubernetes runs the same manifests on a cloud cluster and an on-premise cluster. It scales with traffic, heals itself when a machine dies and ships new versions without downtime.",
     "goal1": "Fire a traffic spike in both modes and watch the replicas.",
@@ -185,7 +186,7 @@
     }
   },
   "obs": {
-    "eyebrow": "05/ observability",
+    "eyebrow": "07/ observability",
     "title": "See problems before users do",
     "subtitle": "Services emit metrics, logs and traces through OpenTelemetry, and Grafana turns them into live dashboards and alerts. The difference shows up in one number: how long it takes to notice.",
     "goal1": "Inject slowness in payments and see how fast each mode notices.",
@@ -216,7 +217,7 @@
     }
   },
   "ddd": {
-    "eyebrow": "06/ domain-driven design",
+    "eyebrow": "08/ domain-driven design",
     "title": "Boundaries that match the business",
     "subtitle": "Domain-driven design splits a system into bounded contexts, each with its own model and language, talking through domain events instead of shared tables.",
     "goal1": "Place a few orders and follow the domain events.",
@@ -258,7 +259,7 @@
     }
   },
   "agents": {
-    "eyebrow": "03/ ai-assisted engineering",
+    "eyebrow": "05/ ai-assisted engineering",
     "title": "More hands, same judgment",
     "subtitle": "I split work into well-scoped tasks and hand them to Claude Code agents, each in its own git worktree. They implement in parallel; I stay on design and review every change before it ships.",
     "goal1": "Add a batch of tasks and work through them solo.",
@@ -330,7 +331,7 @@
     }
   },
   "journey": {
-    "eyebrow": "08/ journey",
+    "eyebrow": "01/ journey",
     "title": "Work and study, side by side",
     "subtitle": "Industry and academia have always run in parallel for me. Each track feeds the other: real problems at WEG turn into research questions, and research shapes how I build.",
     "windowTitle": "timeline.log",
@@ -519,11 +520,14 @@
     }
   },
   "certificates": {
-    "eyebrow": "09/ certificates",
+    "eyebrow": "02/ certificates",
     "title": "Extra credentials",
     "subtitle": "Courses and certifications I picked up along the way.",
     "issued": "issued",
     "verify": "Verify credential",
-    "label": "Certificates"
+    "label": "Certificates",
+    "previous": "Previous certificate",
+    "next": "Next certificate",
+    "goTo": "Go to certificate {{n}}"
   }
 }
