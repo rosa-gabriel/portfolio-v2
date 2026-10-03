@@ -328,5 +328,202 @@
         "detail": "high performance, production-grade reliability"
       }
     }
+  },
+  "journey": {
+    "eyebrow": "08/ journey",
+    "title": "Work and study, side by side",
+    "subtitle": "Industry and academia have always run in parallel for me. Each track feeds the other: real problems at WEG turn into research questions, and research shapes how I build.",
+    "windowTitle": "timeline.log",
+    "label": "Professional and academic timeline",
+    "lanes": {
+      "work": "work",
+      "education": "education"
+    },
+    "previous": "Previous entry",
+    "next": "Next entry",
+    "today": "today",
+    "present": "Present",
+    "expected": "expected",
+    "ongoing": "ongoing",
+    "openDetails": "Open details",
+    "close": "Close",
+    "hint": "Click any bar, or use the arrow keys, to explore.",
+    "skills": "skills",
+    "counter": "{{current}} / {{total}}",
+    "years_one": "{{count}} yr",
+    "years_other": "{{count}} yrs",
+    "months_one": "{{count}} mo",
+    "months_other": "{{count}} mos",
+    "items": {
+      "architect": {
+        "role": "Scalable Systems Architect",
+        "short": "Systems Architect",
+        "kind": "Contract",
+        "mode": "Hybrid",
+        "summary": [
+          "Technical leadership role within Systems Architecture, focused on modernizing enterprise integrations through event-driven architecture and scalability.",
+          "Leading the design and implementation of an internal event streaming platform, enabling decoupled and self-service integrations across the organization."
+        ],
+        "sections": [
+          {
+            "title": "Event-driven platform (Kafka, RabbitMQ, Flink)",
+            "points": [
+              "Leading the architecture of an internal, on-premise streaming platform",
+              "Managing multi-broker environments for streaming and messaging"
+            ]
+          },
+          {
+            "title": "Data integration and connectors",
+            "points": [
+              "Built automated provisioning of connectors for databases and external systems",
+              "Simplified integration with the central event bus"
+            ]
+          },
+          {
+            "title": "Real-time processing (Flink)",
+            "points": [
+              "Implemented real-time data processing and transformation",
+              "Enabled streaming analytics and data enrichment"
+            ]
+          },
+          {
+            "title": "Multi-cloud and hybrid deployment",
+            "points": [
+              "Designed a hybrid architecture (on-premise and cloud)",
+              "Implemented cross-cluster data replication"
+            ]
+          },
+          {
+            "title": "Low-code integration platform",
+            "points": [
+              "Leading development of a low-code platform for real-time integrations",
+              "Abstracted event-driven complexity for broader adoption"
+            ]
+          }
+        ]
+      },
+      "researcher": {
+        "role": "Software Architecture Researcher",
+        "short": "Architecture Researcher",
+        "kind": "Indirect contract",
+        "mode": "On-site",
+        "summary": [
+          "Worked within the Systems Architecture and Data Governance team, helping standardize integrations across an ecosystem of ~900 developers.",
+          "Focused on building scalable, secure, and self-service platforms for enterprise integrations."
+        ],
+        "sections": [
+          {
+            "title": "Developers Suite (internal developer platform)",
+            "points": [
+              "Designed a centralized platform for API and system governance",
+              "Standardized integration patterns and improved system discoverability",
+              "Reduced duplication across teams"
+            ]
+          },
+          {
+            "title": "Self-service infrastructure provisioning",
+            "points": [
+              "Built a platform for automated provisioning of databases and Kubernetes environments",
+              "Provisioned and managed 300+ databases (PostgreSQL, MongoDB, MinIO, Redis)",
+              "Reduced provisioning time and operational overhead"
+            ]
+          },
+          {
+            "title": "API gateway platform",
+            "points": [
+              "Architected a centralized API gateway using Kong on Kubernetes",
+              "Evolved it into a micro-gateway architecture (on-premise and cloud)",
+              "Reduced duplication of integration logic across systems"
+            ]
+          },
+          {
+            "title": "Authentication and authorization",
+            "points": [
+              "Standardized auth using OIDC and Keycloak",
+              "Enabled secure system-to-system communication"
+            ]
+          },
+          {
+            "title": "Observability",
+            "points": [
+              "Implemented OpenTelemetry with centralized logs, metrics, and tracing (Grafana)",
+              "Improved system visibility and debugging"
+            ]
+          },
+          {
+            "title": "CI/CD and platform engineering",
+            "points": [
+              "Built reproducible CI/CD pipelines for infrastructure and applications",
+              "Automated Kubernetes deployments with a focus on reliability and consistency"
+            ]
+          }
+        ]
+      },
+      "msc": {
+        "role": "M.Sc. in Applied Computer Science",
+        "short": "M.Sc. Applied Computing",
+        "kind": "Advanced Parallel Programming",
+        "mode": "Master's degree",
+        "summary": [
+          "Pursuing a Master's degree with a strong focus on high-performance parallel and distributed systems, deepening expertise in scalability, performance optimization, and modern computing paradigms."
+        ],
+        "sections": [
+          {
+            "title": "Key focus areas",
+            "points": [
+              "Parallel and distributed computing for high-performance applications",
+              "Advanced system design for scalability and efficiency in enterprise environments",
+              "Performance optimization techniques for modern architectures",
+              "Research and innovation applied to real-world system challenges"
+            ]
+          },
+          {
+            "title": "Academic and professional impact",
+            "points": [
+              "Strengthening the ability to design highly optimized and scalable systems",
+              "Bridging academic research with enterprise-grade architecture and platforms",
+              "Expanding knowledge in cutting-edge computing models and distributed systems theory",
+              "Applying research-driven approaches to solve complex engineering problems at scale"
+            ]
+          }
+        ]
+      },
+      "bsc": {
+        "role": "B.Sc. in Software Engineering",
+        "short": "B.Sc. Software Engineering",
+        "kind": "Computer Software Engineering",
+        "mode": "Bachelor's degree",
+        "summary": [
+          "Completed my degree with a strong focus on real-world software engineering, combining academic learning with hands-on experience in enterprise environments.",
+          "Awarded a research scholarship in partnership with WEG, which enabled close collaboration with industry professionals and early exposure to large-scale systems, architecture, and organizational challenges."
+        ],
+        "sections": [
+          {
+            "title": "Final thesis: Oxid Gateway, an API gateway in Rust",
+            "points": [
+              "Designed and developed a high-performance API gateway",
+              "Focused on scalability, performance, and production-grade reliability",
+              "Inspired by real challenges faced during the API gateway rollout at WEG",
+              "Explored modern proxy architecture patterns and low-level performance optimizations"
+            ]
+          },
+          {
+            "title": "Academic foundation",
+            "points": [
+              "Covered core areas of software engineering including distributed systems, networking, operating systems, and software architecture",
+              "Built a solid foundation across both theoretical and applied computer science"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "certificates": {
+    "eyebrow": "09/ certificates",
+    "title": "Extra credentials",
+    "subtitle": "Courses and certifications I picked up along the way.",
+    "issued": "issued",
+    "verify": "Verify credential",
+    "label": "Certificates"
   }
 }

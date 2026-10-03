@@ -17,6 +17,8 @@ const K8sFlow = lazyFlow(() => import('@/components/flows/k8s-flow'), 'K8sFlow')
 const ObservabilityFlow = lazyFlow(() => import('@/components/flows/observability-flow'), 'ObservabilityFlow')
 const DddFlow = lazyFlow(() => import('@/components/flows/ddd-flow'), 'DddFlow')
 const AgentsFlow = lazyFlow(() => import('@/components/flows/agents-flow'), 'AgentsFlow')
+const Journey = lazyFlow(() => import('@/components/sections/journey'), 'Journey')
+const Certificates = lazyFlow(() => import('@/components/sections/certificates'), 'Certificates')
 
 function App() {
   const { t, i18n } = useTranslation()
@@ -42,6 +44,8 @@ function App() {
           <ObservabilityFlow />
           <DddFlow />
           <AuthFlow />
+          <Journey />
+          <Certificates />
         </Suspense>
         <ContactCta />
       </main>

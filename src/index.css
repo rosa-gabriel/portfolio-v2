@@ -289,6 +289,136 @@
   }
 }
 
+.journey-fill {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i) * 160ms + 250ms);
+}
+
+.journey-label {
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 500ms ease calc(var(--i) * 160ms + 750ms),
+    transform 500ms ease calc(var(--i) * 160ms + 750ms);
+}
+
+.journey-tick {
+  opacity: 0;
+  transition: opacity 400ms ease calc(var(--i) * 60ms);
+}
+
+.journey-today {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition:
+    opacity 300ms ease 1100ms,
+    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1) 1100ms;
+}
+
+[data-visible] .journey-fill,
+[data-visible] .journey-label,
+[data-visible] .journey-today {
+  opacity: 1;
+  transform: none;
+}
+
+[data-visible] .journey-tick {
+  opacity: 1;
+}
+
+.journey-cursor {
+  transition: transform 500ms cubic-bezier(0.3, 0.1, 0.2, 1);
+}
+
+@keyframes journey-stripes {
+  to {
+    transform: translateX(10px);
+  }
+}
+
+.journey-stripes {
+  background-image: linear-gradient(
+    -45deg,
+    currentColor 25%,
+    transparent 25% 50%,
+    currentColor 50% 75%,
+    transparent 75%
+  );
+  background-size: 10px 10px;
+  animation: journey-stripes 900ms linear infinite;
+}
+
+@keyframes sheen {
+  to {
+    transform: translateX(400%);
+  }
+}
+
+.journey-sheen,
+.cert-sheen {
+  background: linear-gradient(100deg, transparent, color-mix(in oklab, var(--foreground) 10%, transparent), transparent);
+  opacity: 0;
+}
+
+.group:hover .journey-sheen,
+.group:focus-visible .journey-sheen,
+.group:hover .cert-sheen,
+.group:focus-visible .cert-sheen {
+  opacity: 1;
+  animation: sheen 900ms ease-out;
+}
+
+@keyframes journey-glow {
+  from {
+    opacity: 0.12;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 0.28;
+    transform: scale(1.1);
+  }
+}
+
+.journey-glow {
+  background-color: currentColor;
+  animation: journey-glow 4s ease-in-out infinite alternate;
+}
+
+.cert-card {
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  transition:
+    opacity 600ms ease calc(var(--i) * 90ms),
+    transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i) * 90ms);
+}
+
+[data-visible] .cert-card {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-fill,
+  .journey-label,
+  .journey-tick,
+  .journey-today,
+  .journey-cursor,
+  .cert-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .journey-stripes,
+  .journey-glow,
+  .group:hover .journey-sheen,
+  .group:hover .cert-sheen {
+    animation: none;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

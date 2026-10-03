@@ -328,5 +328,202 @@
         "detail": "alta performance, confiabilidade de produção"
       }
     }
+  },
+  "journey": {
+    "eyebrow": "08/ trajetória",
+    "title": "Trabalho e estudo, lado a lado",
+    "subtitle": "Indústria e academia sempre andaram em paralelo para mim. Uma trilha alimenta a outra: problemas reais na WEG viram perguntas de pesquisa, e a pesquisa molda como eu construo.",
+    "windowTitle": "timeline.log",
+    "label": "Linha do tempo profissional e acadêmica",
+    "lanes": {
+      "work": "trabalho",
+      "education": "formação"
+    },
+    "previous": "Item anterior",
+    "next": "Próximo item",
+    "today": "hoje",
+    "present": "Atual",
+    "expected": "previsto",
+    "ongoing": "em andamento",
+    "openDetails": "Ver detalhes",
+    "close": "Fechar",
+    "hint": "Clique em qualquer barra, ou use as setas do teclado, para explorar.",
+    "skills": "competências",
+    "counter": "{{current}} / {{total}}",
+    "years_one": "{{count}} ano",
+    "years_other": "{{count}} anos",
+    "months_one": "{{count}} mês",
+    "months_other": "{{count}} meses",
+    "items": {
+      "architect": {
+        "role": "Arquiteto de Sistemas Escaláveis",
+        "short": "Arquiteto de Sistemas",
+        "kind": "Contrato",
+        "mode": "Híbrido",
+        "summary": [
+          "Liderança técnica dentro de Arquitetura de Sistemas, com foco em modernizar integrações corporativas por meio de arquitetura orientada a eventos e escalabilidade.",
+          "Liderando o design e a implementação de uma plataforma interna de streaming de eventos, que viabiliza integrações desacopladas e self-service em toda a organização."
+        ],
+        "sections": [
+          {
+            "title": "Plataforma orientada a eventos (Kafka, RabbitMQ, Flink)",
+            "points": [
+              "Liderando a arquitetura de uma plataforma interna de streaming (on-premise)",
+              "Gerenciando ambientes com múltiplos brokers para streaming e mensageria"
+            ]
+          },
+          {
+            "title": "Integração de dados e conectores",
+            "points": [
+              "Construí o provisionamento automatizado de conectores para bancos de dados e sistemas externos",
+              "Simplifiquei a integração com o barramento central de eventos"
+            ]
+          },
+          {
+            "title": "Processamento em tempo real (Flink)",
+            "points": [
+              "Implementei processamento e transformação de dados em tempo real",
+              "Viabilizei analytics em streaming e enriquecimento de dados"
+            ]
+          },
+          {
+            "title": "Multi-cloud e implantação híbrida",
+            "points": [
+              "Projetei uma arquitetura híbrida (on-premise e nuvem)",
+              "Implementei replicação de dados entre clusters"
+            ]
+          },
+          {
+            "title": "Plataforma low-code de integração",
+            "points": [
+              "Liderando o desenvolvimento de uma plataforma low-code para integrações em tempo real",
+              "Abstraí a complexidade de eventos para ampliar a adoção"
+            ]
+          }
+        ]
+      },
+      "researcher": {
+        "role": "Pesquisador em Arquitetura de Software",
+        "short": "Pesquisador em Arquitetura",
+        "kind": "Contrato indireto",
+        "mode": "Presencial",
+        "summary": [
+          "Atuei no time de Arquitetura de Sistemas e Governança de Dados, ajudando a padronizar integrações em um ecossistema de ~900 desenvolvedores.",
+          "Foco na construção de plataformas escaláveis, seguras e self-service para integrações corporativas."
+        ],
+        "sections": [
+          {
+            "title": "Developers Suite (plataforma interna de desenvolvimento)",
+            "points": [
+              "Projetei uma plataforma centralizada de governança de APIs e sistemas",
+              "Padronizei padrões de integração e melhorei a descoberta de sistemas",
+              "Reduzi a duplicação entre times"
+            ]
+          },
+          {
+            "title": "Provisionamento self-service de infraestrutura",
+            "points": [
+              "Construí uma plataforma de provisionamento automatizado de bancos de dados e ambientes Kubernetes",
+              "Provisionei e gerenciei mais de 300 bancos (PostgreSQL, MongoDB, MinIO, Redis)",
+              "Reduzi o tempo de provisionamento e o esforço operacional"
+            ]
+          },
+          {
+            "title": "Plataforma de API gateway",
+            "points": [
+              "Arquitetei um API gateway centralizado com Kong no Kubernetes",
+              "Evoluí para uma arquitetura de micro-gateways (on-premise e nuvem)",
+              "Reduzi a duplicação de lógica de integração entre sistemas"
+            ]
+          },
+          {
+            "title": "Autenticação e autorização",
+            "points": [
+              "Padronizei a autenticação com OIDC e Keycloak",
+              "Viabilizei comunicação segura entre sistemas"
+            ]
+          },
+          {
+            "title": "Observabilidade",
+            "points": [
+              "Implementei OpenTelemetry com logs, métricas e tracing centralizados (Grafana)",
+              "Melhorei a visibilidade e a depuração dos sistemas"
+            ]
+          },
+          {
+            "title": "CI/CD e engenharia de plataforma",
+            "points": [
+              "Construí pipelines de CI/CD reproduzíveis para infraestrutura e aplicações",
+              "Automatizei deploys no Kubernetes com foco em confiabilidade e consistência"
+            ]
+          }
+        ]
+      },
+      "msc": {
+        "role": "Mestrado em Computação Aplicada",
+        "short": "Mestrado em Computação",
+        "kind": "Programação Paralela Avançada",
+        "mode": "Mestrado",
+        "summary": [
+          "Cursando mestrado com forte foco em sistemas paralelos e distribuídos de alto desempenho, aprofundando conhecimentos em escalabilidade, otimização de desempenho e paradigmas modernos de computação."
+        ],
+        "sections": [
+          {
+            "title": "Principais áreas de foco",
+            "points": [
+              "Computação paralela e distribuída para aplicações de alto desempenho",
+              "Design avançado de sistemas para escalabilidade e eficiência em ambientes corporativos",
+              "Técnicas de otimização de desempenho para arquiteturas modernas",
+              "Pesquisa e inovação aplicadas a desafios reais de sistemas"
+            ]
+          },
+          {
+            "title": "Impacto acadêmico e profissional",
+            "points": [
+              "Fortalecendo a capacidade de projetar sistemas altamente otimizados e escaláveis",
+              "Unindo a pesquisa acadêmica a arquiteturas e plataformas corporativas",
+              "Ampliando o conhecimento em modelos de computação de ponta e teoria de sistemas distribuídos",
+              "Aplicando abordagens orientadas a pesquisa para resolver problemas complexos de engenharia em escala"
+            ]
+          }
+        ]
+      },
+      "bsc": {
+        "role": "Bacharelado em Engenharia de Software",
+        "short": "Engenharia de Software",
+        "kind": "Engenharia de Software",
+        "mode": "Bacharelado",
+        "summary": [
+          "Concluí a graduação com forte foco em engenharia de software do mundo real, unindo o aprendizado acadêmico à experiência prática em ambientes corporativos.",
+          "Recebi uma bolsa de pesquisa em parceria com a WEG, o que permitiu colaboração próxima com profissionais da indústria e contato cedo com sistemas de grande escala, arquitetura e desafios organizacionais."
+        ],
+        "sections": [
+          {
+            "title": "TCC: Oxid Gateway, um API gateway em Rust",
+            "points": [
+              "Projetei e desenvolvi um API gateway de alto desempenho",
+              "Foco em escalabilidade, desempenho e confiabilidade de produção",
+              "Inspirado em desafios reais da implantação do API gateway na WEG",
+              "Explorei padrões modernos de arquitetura de proxies e otimizações de baixo nível"
+            ]
+          },
+          {
+            "title": "Base acadêmica",
+            "points": [
+              "Cobri as áreas centrais da engenharia de software, incluindo sistemas distribuídos, redes, sistemas operacionais e arquitetura de software",
+              "Construí uma base sólida em ciência da computação teórica e aplicada"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "certificates": {
+    "eyebrow": "09/ certificados",
+    "title": "Credenciais extras",
+    "subtitle": "Cursos e certificações que conquistei pelo caminho.",
+    "issued": "emitido",
+    "verify": "Verificar credencial",
+    "label": "Certificados"
   }
 }
