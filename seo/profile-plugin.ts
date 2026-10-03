@@ -3,7 +3,7 @@ import en from '../src/i18n/locales/en.json' with { type: 'json' }
 import { caseStudies } from '../src/lib/case-studies.ts'
 import { certificates } from '../src/lib/certificates.ts'
 import { journeyEntries, type JourneyEntry } from '../src/lib/journey.ts'
-import { email, githubUrl, linkedinUrl, location, siteUrl } from '../src/lib/profile.ts'
+import { email, githubUrl, googleSiteVerification, linkedinUrl, location, siteUrl } from '../src/lib/profile.ts'
 import { skillGroups } from '../src/lib/skills.ts'
 
 const NAME = 'Gabriel Rosa'
@@ -24,7 +24,6 @@ type Item = (typeof en.journey.items)[keyof typeof en.journey.items]
 const jobTitle = en.journey.items.architect.role
 const description = en.hero.tagline
 const skills = skillGroups.flatMap((group) => [...group.skills])
-const publishedCertificates = certificates.filter((certificate) => !certificate.draft)
 
 function experience(lane: JourneyEntry['lane']) {
   return journeyEntries
@@ -94,10 +93,10 @@ function renderHtml() {
           .join('')}</dl>
       </section>
       ${
-        publishedCertificates.length
+        certificates.length
           ? `<section>
         <h2>Certificates</h2>
-        ${list(publishedCertificates.map((certificate) => `${certificate.title}, ${certificate.issuer} (${month(certificate.issued)})`))}
+        ${list(certificates.map((certificate) => `${certificate.title}, ${certificate.issuer} (${month(certificate.issued)})`))}
       </section>`
           : ''
       }
@@ -156,10 +155,10 @@ function renderMarkdown() {
     }),
     '## Skills',
     bullets(skillGroups.map((group) => `${en.skills.groups[group.id]}: ${group.skills.join(', ')}`)),
-    ...(publishedCertificates.length
+    ...(certificates.length
       ? [
           '## Certificates',
-          bullets(publishedCertificates.map((certificate) => `${certificate.title}, ${certificate.issuer} (${month(certificate.issued)})`)),
+          bullets(certificates.map((certificate) => `${certificate.title}, ${certificate.issuer} (${month(certificate.issued)})`)),
         ]
       : []),
   ].join('\n\n')
@@ -193,7 +192,7 @@ function structuredData() {
         { '@type': 'Language', name: 'Portuguese', alternateName: 'pt' },
         { '@type': 'Language', name: 'English', alternateName: 'en' },
       ],
-      hasCredential: publishedCertificates.map((certificate) => ({
+      hasCredential: certificates.map((certificate) => ({
         '@type': 'EducationalOccupationalCredential',
         name: certificate.title,
         recognizedBy: { '@type': 'Organization', name: certificate.issuer },
@@ -209,7 +208,9 @@ function headTags() {
   const image = new URL('og.png', siteUrl).href
   return `
     <meta name="description" content="${escape(description)}" />
-    <meta name="author" content="${NAME}" />
+    <meta name="author" content="${NAME}" />${
+      googleSiteVerification ? `\n    <meta name="google-site-verification" content="${escape(googleSiteVerification)}" />` : ''
+    }
     <link rel="canonical" href="${siteUrl}" />
     <link rel="alternate" type="text/markdown" href="${siteUrl}llms.txt" title="Profile in Markdown" />
     <meta property="og:type" content="profile" />
