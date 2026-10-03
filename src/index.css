@@ -48,6 +48,13 @@
   --kanagawa-blue: #4d699b;
   --kanagawa-violet: #624c83;
   --kanagawa-pink: #b35b79;
+
+  --rose-fill: #c84053;
+  --rose-ink: #1f1f28;
+  --petal-1: #c84053;
+  --petal-2: #d7474b;
+  --petal-3: #b35b79;
+  --vine: color-mix(in oklab, #766b90 45%, transparent);
 }
 
 .dark {
@@ -91,6 +98,13 @@
   --kanagawa-blue: #7e9cd8;
   --kanagawa-violet: #957fb8;
   --kanagawa-pink: #d27e99;
+
+  --rose-fill: #e46876;
+  --rose-ink: #16161d;
+  --petal-1: #e46876;
+  --petal-2: #ff5d62;
+  --petal-3: #d27e99;
+  --vine: color-mix(in oklab, #938aa9 40%, transparent);
 }
 
 @theme inline {
@@ -135,6 +149,11 @@
   --color-kanagawa-blue: var(--kanagawa-blue);
   --color-kanagawa-violet: var(--kanagawa-violet);
   --color-kanagawa-pink: var(--kanagawa-pink);
+  --color-rose-fill: var(--rose-fill);
+  --color-rose-ink: var(--rose-ink);
+  --color-petal-1: var(--petal-1);
+  --color-petal-2: var(--petal-2);
+  --color-petal-3: var(--petal-3);
   --font-heading: var(--font-sans);
   --font-sans: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   --radius-2xl: calc(var(--radius) * 1.8);
@@ -196,6 +215,42 @@
   animation-name: petal-flutter;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+@keyframes vine-rise {
+  to {
+    transform: translateY(calc(var(--vine-width) * var(--vine-ratio) * -1));
+  }
+}
+
+.vine-column {
+  --vine-width: 280px;
+  --vine-ratio: calc(192 / 108);
+  position: absolute;
+  inset-block: 0;
+  width: calc((100% - 64rem) / 2);
+  overflow: hidden;
+  mask-image:
+    linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(to right, #000 75%, transparent);
+  mask-composite: intersect;
+}
+
+.vine-track {
+  height: calc(100% + var(--vine-width) * var(--vine-ratio));
+  background-color: var(--vine);
+  mask-image: url(/rose-vine.svg);
+  mask-repeat: repeat-y;
+  mask-size: var(--vine-width) auto;
+  mask-position: center top;
+  animation: vine-rise 100s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vine-track {
+    animation: none;
+  }
 }
 
 @layer base {

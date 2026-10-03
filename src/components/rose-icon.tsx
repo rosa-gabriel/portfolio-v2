@@ -9,8 +9,7 @@ export function RoseIcon({ className }: RoseIconProps) {
         <path id="rose-petal" d="M32 32C18 30 15 14 32 5C49 14 46 30 32 32Z" />
       </defs>
       <g
-        fill="#C34043"
-        stroke="#1F1F28"
+        className="fill-rose-fill stroke-rose-ink"
         strokeWidth="1.6"
         strokeLinejoin="round"
         vectorEffect="non-scaling-stroke"

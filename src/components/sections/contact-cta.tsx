@@ -1,11 +1,5 @@
-import { Briefcase, Code2, Mail } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-
-const links = [
-  { labelKey: 'contact.emailLabel', href: 'mailto:gabriel.edu.rosa@proton.me', Icon: Mail },
-  { labelKey: 'contact.githubLabel', href: 'https://github.com/rosa-gabriel', Icon: Code2 },
-  { labelKey: 'contact.linkedinLabel', href: 'https://www.linkedin.com/in/gabriel-edu-rosa/', Icon: Briefcase },
-] as const
+import { contactLinks } from '@/lib/contact-links'
 
 export function ContactCta() {
   const { t } = useTranslation()
@@ -19,7 +13,7 @@ export function ContactCta() {
       <p className="mt-2 max-w-xl text-muted-foreground">{t('contact.subtitle')}</p>
 
       <div className="mt-8 flex flex-col gap-2 font-mono text-sm">
-        {links.map(({ labelKey, href, Icon }) => (
+        {contactLinks.map(({ labelKey, href, Icon }) => (
           <a
             key={labelKey}
             href={href}

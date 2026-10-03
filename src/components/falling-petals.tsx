@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type AnimationEvent, type CSSProperties } from 'react'
 
 const PETAL_PATH = 'M32 32C18 30 15 14 32 5C49 14 46 30 32 32Z'
-const PETAL_COLORS = ['#C34043', '#E46876', '#A8323A']
+const PETAL_COLORS = ['fill-petal-1', 'fill-petal-2', 'fill-petal-3']
 const PIXELS_PER_PETAL = 90
 const MIN_SPAWN_INTERVAL_MS = 100
 const MAX_PETALS = 28
@@ -108,8 +108,7 @@ export function FallingPetals() {
             >
               <path
                 d={PETAL_PATH}
-                fill={petal.color}
-                stroke="#1F1F28"
+                className={`${petal.color} stroke-rose-ink`}
                 strokeWidth="1.2"
                 strokeLinejoin="round"
                 vectorEffect="non-scaling-stroke"

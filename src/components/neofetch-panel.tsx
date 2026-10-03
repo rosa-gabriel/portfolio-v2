@@ -20,7 +20,6 @@ export function NeofetchPanel() {
     { label: 'Shell', value: t('hero.fieldShell') },
     { label: 'Host', value: t('hero.fieldHost') },
     { label: 'Theme', value: 'Kanagawa' },
-    { label: 'Status', value: t('hero.status') },
   ]
 
   return (
@@ -30,7 +29,7 @@ export function NeofetchPanel() {
         <p className="text-kanagawa-blue font-semibold">{HOST}</p>
         <p className="text-muted-foreground">{'-'.repeat(HOST.length)}</p>
         {fields.map(({ label, value }) => (
-          <p key={label} className="truncate">
+          <p key={label}>
             <span className="text-kanagawa-yellow">{label}</span>
             <span className="text-muted-foreground">: </span>
             <span>{value}</span>

@@ -3,11 +3,9 @@
     "title": "Gabriel Rosa, Arquiteto de Sistemas"
   },
   "hero": {
-    "status": "disponível para trabalho",
     "command": "whoami",
     "tagline": "Arquiteto de sistemas escaláveis construindo plataformas orientadas a eventos na WEG. Atualmente pesquisando computação paralela e distribuída na UDESC.",
-    "ctaProjects": "Ver projetos",
-    "ctaContact": "Entrar em contato",
+    "downloadResume": "Baixar currículo",
     "terminalTitle": "sobre.sh",
     "fieldOs": "Arquiteto de Sistemas Escaláveis @ WEG",
     "fieldShell": "Go · Rust · Kafka · Kubernetes",

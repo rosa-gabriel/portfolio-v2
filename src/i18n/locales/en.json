@@ -3,11 +3,9 @@
     "title": "Gabriel Rosa, Systems Architect"
   },
   "hero": {
-    "status": "available for work",
     "command": "whoami",
     "tagline": "Scalable systems architect building event-driven platforms at WEG. Currently researching parallel and distributed computing at UDESC.",
-    "ctaProjects": "View projects",
-    "ctaContact": "Get in touch",
+    "downloadResume": "Download resume",
     "terminalTitle": "about.sh",
     "fieldOs": "Scalable Systems Architect @ WEG",
     "fieldShell": "Go · Rust · Kafka · Kubernetes",

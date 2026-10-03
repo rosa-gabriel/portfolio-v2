@@ -7,6 +7,7 @@ import { FeatureSection } from '@/components/sections/feature-section'
 import { Projects } from '@/components/sections/projects'
 import { ContactCta } from '@/components/sections/contact-cta'
 import { TerminalWindow } from '@/components/terminal-window'
+import { VineMargins } from '@/components/vine-margins'
 
 function App() {
   const { t, i18n } = useTranslation()
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <div className="flex min-h-svh flex-col">
+      <VineMargins />
       <StatusBar />
       <main className="flex-1">
         <Hero />

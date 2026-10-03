@@ -1,8 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64">
+  <style>
+    .rose { fill: #c84053; stroke: #1f1f28; }
+    @media (prefers-color-scheme: dark) {
+      .rose { fill: #e46876; stroke: #16161d; }
+    }
+  </style>
   <defs>
     <path id="p" d="M32 32C18 30 15 14 32 5C49 14 46 30 32 32Z"/>
   </defs>
-  <g fill="#C34043" stroke="#1F1F28" stroke-width="1.600" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+  <g class="rose" stroke-width="1.600" stroke-linejoin="round" vector-effect="non-scaling-stroke">
     <g>
       <use xlink:href="#p"/>
       <use xlink:href="#p" transform="rotate(72 32 32)"/>
