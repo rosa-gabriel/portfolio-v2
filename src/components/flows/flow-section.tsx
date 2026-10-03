@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { TerminalWindow } from '@/components/terminal-window'
 import { cn } from '@/lib/utils'
+import { reveal } from '@/lib/reveal'
 
 export type FlowMetric = {
   label: string
@@ -50,65 +51,75 @@ export function FlowSection<M extends string>({
 }: FlowSectionProps<M>) {
   return (
     <section className="render-on-view mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-16">
-      <p className="text-kanagawa-blue text-sm">{eyebrow}</p>
-      <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>
-      <p className="mt-2 max-w-2xl text-muted-foreground">{subtitle}</p>
+      <p {...reveal('type')} className="text-kanagawa-blue text-sm">
+        {eyebrow}
+      </p>
+      <h2 {...reveal('title', 1)} className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
+        {title}
+      </h2>
+      <p {...reveal('up', 2)} className="mt-2 max-w-2xl text-muted-foreground">
+        {subtitle}
+      </p>
 
-      <FlowGoals goals={goals} />
+      <div {...reveal('up', 3)}>
+        <FlowGoals goals={goals} />
+      </div>
 
-      <TerminalWindow title={windowTitle} className="mt-6 sm:mt-8" bodyClassName="p-3 sm:p-4">
-        <div ref={containerRef} className="flex flex-col gap-4">
-          <div className="contents sm:flex sm:flex-wrap sm:items-center sm:justify-between sm:gap-3">
-            <div
-              role="group"
-              aria-label={modeLabel}
-              className="grid grid-cols-2 gap-1 rounded-md border border-border p-0.5 sm:inline-flex"
+      <div {...reveal('window', 3)} className="mt-6 sm:mt-8">
+        <TerminalWindow title={windowTitle} bodyClassName="p-3 sm:p-4">
+          <div ref={containerRef} className="flex flex-col gap-4">
+            <div className="contents sm:flex sm:flex-wrap sm:items-center sm:justify-between sm:gap-3">
+              <div
+                role="group"
+                aria-label={modeLabel}
+                className="grid grid-cols-2 gap-1 rounded-md border border-border p-0.5 sm:inline-flex"
+              >
+                {modes.map((option) => (
+                  <Button
+                    key={option.id}
+                    type="button"
+                    size="sm"
+                    variant={mode === option.id ? 'default' : 'ghost'}
+                    aria-pressed={mode === option.id}
+                    onClick={() => onModeChange(option.id)}
+                    className="h-auto min-h-9 py-1.5 leading-tight whitespace-normal sm:min-h-7 sm:py-0 sm:whitespace-nowrap"
+                  >
+                    {option.label}
+                  </Button>
+                ))}
+              </div>
+              <div className="sticky bottom-3 z-10 order-3 overflow-hidden rounded-lg border border-border bg-card/95 shadow-lg sm:static sm:order-none sm:overflow-visible sm:rounded-none sm:border-0 sm:bg-transparent sm:shadow-none">
+                <div className="flex gap-1.5 overflow-x-auto overscroll-x-contain p-1.5 [mask-image:linear-gradient(to_right,transparent,#000_0.75rem,#000_calc(100%-0.75rem),transparent)] [scrollbar-width:none] sm:flex-wrap sm:justify-end sm:gap-2 sm:overflow-visible sm:p-0 sm:[mask-image:none] [&::-webkit-scrollbar]:hidden">
+                  {actions}
+                </div>
+              </div>
+            </div>
+
+            <svg
+              viewBox={`0 0 ${viewBox.width} ${viewBox.height}`}
+              className="order-2 h-auto w-full select-none sm:order-none"
+              role="img"
+              aria-label={diagramLabel}
             >
-              {modes.map((option) => (
-                <Button
-                  key={option.id}
-                  type="button"
-                  size="sm"
-                  variant={mode === option.id ? 'default' : 'ghost'}
-                  aria-pressed={mode === option.id}
-                  onClick={() => onModeChange(option.id)}
-                  className="h-auto min-h-9 py-1.5 leading-tight whitespace-normal sm:min-h-7 sm:py-0 sm:whitespace-nowrap"
-                >
-                  {option.label}
-                </Button>
+              {children}
+            </svg>
+
+            <dl className="order-4 flex flex-wrap gap-x-6 gap-y-1 text-xs sm:order-none">
+              {metrics.map((metric) => (
+                <div key={metric.label} className="flex gap-1.5">
+                  <dt className="text-muted-foreground">{metric.label}</dt>
+                  <dd className={cn('font-semibold tabular-nums', metric.className)}>{metric.value}</dd>
+                </div>
               ))}
+            </dl>
+
+            <p className="order-5 flex min-h-16 gap-2 text-sm leading-relaxed sm:order-none">
+              <span className="text-kanagawa-green">›</span>
+              <span>{caption}</span>
+            </p>
             </div>
-            <div className="sticky bottom-3 z-10 order-3 overflow-hidden rounded-lg border border-border bg-card/95 shadow-lg sm:static sm:order-none sm:overflow-visible sm:rounded-none sm:border-0 sm:bg-transparent sm:shadow-none">
-              <div className="flex gap-1.5 overflow-x-auto overscroll-x-contain p-1.5 [mask-image:linear-gradient(to_right,transparent,#000_0.75rem,#000_calc(100%-0.75rem),transparent)] [scrollbar-width:none] sm:flex-wrap sm:justify-end sm:gap-2 sm:overflow-visible sm:p-0 sm:[mask-image:none] [&::-webkit-scrollbar]:hidden">
-                {actions}
-              </div>
-            </div>
-          </div>
-
-          <svg
-            viewBox={`0 0 ${viewBox.width} ${viewBox.height}`}
-            className="order-2 h-auto w-full select-none sm:order-none"
-            role="img"
-            aria-label={diagramLabel}
-          >
-            {children}
-          </svg>
-
-          <dl className="order-4 flex flex-wrap gap-x-6 gap-y-1 text-xs sm:order-none">
-            {metrics.map((metric) => (
-              <div key={metric.label} className="flex gap-1.5">
-                <dt className="text-muted-foreground">{metric.label}</dt>
-                <dd className={cn('font-semibold tabular-nums', metric.className)}>{metric.value}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <p className="order-5 flex min-h-16 gap-2 text-sm leading-relaxed sm:order-none">
-            <span className="text-kanagawa-green">›</span>
-            <span>{caption}</span>
-          </p>
-        </div>
-      </TerminalWindow>
+        </TerminalWindow>
+      </div>
     </section>
   )
 }

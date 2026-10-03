@@ -236,20 +236,20 @@
 .journey-fill {
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i) * 160ms + 250ms);
+  transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i) * 160ms + 650ms);
 }
 
 .journey-label {
   opacity: 0;
   transform: translateY(4px);
   transition:
-    opacity 500ms ease calc(var(--i) * 160ms + 750ms),
-    transform 500ms ease calc(var(--i) * 160ms + 750ms);
+    opacity 500ms ease calc(var(--i) * 160ms + 1150ms),
+    transform 500ms ease calc(var(--i) * 160ms + 1150ms);
 }
 
 .journey-tick {
   opacity: 0;
-  transition: opacity 400ms ease calc(var(--i) * 60ms);
+  transition: opacity 400ms ease calc(var(--i) * 60ms + 500ms);
 }
 
 .journey-today {
@@ -257,18 +257,18 @@
   transform: scaleY(0);
   transform-origin: top;
   transition:
-    opacity 300ms ease 1100ms,
-    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1) 1100ms;
+    opacity 300ms ease 1500ms,
+    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1) 1500ms;
 }
 
-[data-visible] .journey-fill,
-[data-visible] .journey-label,
-[data-visible] .journey-today {
+[data-revealed] .journey-fill,
+[data-revealed] .journey-label,
+[data-revealed] .journey-today {
   opacity: 1;
   transform: none;
 }
 
-[data-visible] .journey-tick {
+[data-revealed] .journey-tick {
   opacity: 1;
 }
 
@@ -389,6 +389,110 @@
 @media (prefers-reduced-motion: reduce) {
   .scroll-cue {
     animation: none;
+  }
+}
+
+@keyframes reveal-scan {
+  from {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(320%);
+    opacity: 0;
+  }
+}
+
+@keyframes reveal-caret {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    transition-property: opacity, transform, clip-path;
+    transition-duration: 900ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  /* Hidden states keep a 1px unclipped strip: IntersectionObserver ignores fully clipped targets */
+  [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+  }
+
+  [data-reveal='up']:not([data-revealed]) {
+    transform: translateY(28px);
+  }
+
+  [data-reveal='title'] {
+    clip-path: inset(0 0 0 0);
+  }
+
+  [data-reveal='title']:not([data-revealed]) {
+    transform: translateY(0.45em);
+    clip-path: inset(0 0 calc(100% - 1px) 0);
+  }
+
+  [data-reveal='type'] {
+    width: fit-content;
+    clip-path: inset(0 0 0 0);
+    transition:
+      opacity 1ms linear var(--reveal-delay, 0ms),
+      clip-path 650ms steps(16, end) var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal='type']:not([data-revealed]) {
+    clip-path: inset(0 calc(100% - 1px) 0 0);
+  }
+
+  [data-reveal='type'][data-revealed]::after {
+    content: '';
+    display: inline-block;
+    width: 0.55em;
+    height: 1em;
+    margin-left: 0.2em;
+    vertical-align: -0.15em;
+    background-color: currentColor;
+    opacity: 0;
+    animation: reveal-caret 400ms steps(1) var(--reveal-delay, 0ms) 4;
+  }
+
+  [data-reveal='window'] {
+    position: relative;
+    clip-path: inset(0 0 0 0 round var(--radius));
+    transition-duration: 1100ms;
+  }
+
+  [data-reveal='window']:not([data-revealed]) {
+    transform: translateY(40px) scale(0.97);
+    clip-path: inset(0 0 calc(100% - 1px) 0 round var(--radius));
+  }
+
+  [data-reveal='window']::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 30%;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      color-mix(in oklab, var(--primary) 16%, transparent) 70%,
+      color-mix(in oklab, var(--primary) 45%, transparent) 98%,
+      transparent
+    );
+  }
+
+  [data-reveal='window'][data-revealed]::after {
+    animation: reveal-scan 1300ms cubic-bezier(0.4, 0, 0.2, 1) calc(var(--reveal-delay, 0ms) + 250ms) both;
   }
 }
 

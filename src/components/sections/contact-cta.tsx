@@ -1,21 +1,27 @@
 import { useTranslation } from 'react-i18next'
 import { contactLinks } from '@/lib/contact-links'
+import { reveal } from '@/lib/reveal'
 
 export function ContactCta() {
   const { t } = useTranslation()
 
   return (
     <section id="contact" className="render-on-view mx-auto max-w-5xl px-4 py-20 sm:px-6 [--section-estimate:400px]">
-      <p className="text-kanagawa-blue text-sm">{t('contact.eyebrow')}</p>
-      <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
+      <p {...reveal('type')} className="text-kanagawa-blue text-sm">
+        {t('contact.eyebrow')}
+      </p>
+      <h2 {...reveal('title', 1)} className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
         {t('contact.title')}
       </h2>
-      <p className="mt-2 max-w-xl text-muted-foreground">{t('contact.subtitle')}</p>
+      <p {...reveal('up', 2)} className="mt-2 max-w-xl text-muted-foreground">
+        {t('contact.subtitle')}
+      </p>
 
       <div className="mt-8 flex flex-col gap-2 font-mono text-sm">
-        {contactLinks.map(({ labelKey, href, Icon }) => (
+        {contactLinks.map(({ labelKey, href, Icon }, index) => (
           <a
             key={labelKey}
+            {...reveal('up', 3 + index)}
             href={href}
             target="_blank"
             rel="noreferrer"

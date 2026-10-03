@@ -5,6 +5,7 @@ import { CarouselArrows, CarouselDots } from '@/components/carousel-controls'
 import { useCarousel } from '@/hooks/use-carousel'
 import { useInView } from '@/hooks/use-in-view'
 import { certificates } from '@/lib/certificates'
+import { reveal } from '@/lib/reveal'
 
 export function Certificates() {
   const { t, i18n } = useTranslation()
@@ -22,11 +23,17 @@ export function Certificates() {
       className="render-on-view mx-auto max-w-5xl px-4 py-16 sm:px-6 [--section-estimate:520px]"
       {...pauseHandlers}
     >
-      <p className="text-sm text-kanagawa-blue">{t('certificates.eyebrow')}</p>
+      <p {...reveal('type')} className="text-sm text-kanagawa-blue">
+        {t('certificates.eyebrow')}
+      </p>
       <div className="flex items-end justify-between gap-4">
         <div>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t('certificates.title')}</h2>
-          <p className="mt-2 max-w-2xl text-muted-foreground">{t('certificates.subtitle')}</p>
+          <h2 {...reveal('title', 1)} className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
+            {t('certificates.title')}
+          </h2>
+          <p {...reveal('up', 2)} className="mt-2 max-w-2xl text-muted-foreground">
+            {t('certificates.subtitle')}
+          </p>
         </div>
         <CarouselArrows previousLabel={t('certificates.previous')} nextLabel={t('certificates.next')} onMove={move} />
       </div>

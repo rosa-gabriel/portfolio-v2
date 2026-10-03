@@ -15,6 +15,7 @@ import {
   type JourneyLane,
 } from '@/lib/journey'
 import { cn } from '@/lib/utils'
+import { reveal } from '@/lib/reveal'
 
 const laneStyles: Record<JourneyLane, { bar: string; text: string; chip: string; icon: typeof Briefcase }> = {
   work: {
@@ -141,162 +142,170 @@ export function Journey() {
       aria-label={t('journey.label')}
       className="render-on-view mx-auto max-w-5xl px-4 py-16 sm:px-6 [--section-estimate:820px]"
     >
-      <p className="text-sm text-kanagawa-blue">{t('journey.eyebrow')}</p>
-      <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t('journey.title')}</h2>
-      <p className="mt-2 max-w-2xl text-muted-foreground">{t('journey.subtitle')}</p>
+      <p {...reveal('type')} className="text-sm text-kanagawa-blue">
+        {t('journey.eyebrow')}
+      </p>
+      <h2 {...reveal('title', 1)} className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
+        {t('journey.title')}
+      </h2>
+      <p {...reveal('up', 2)} className="mt-2 max-w-2xl text-muted-foreground">
+        {t('journey.subtitle')}
+      </p>
 
-      <TerminalWindow title={t('journey.windowTitle')} className="mt-8">
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="flex gap-2 text-xs text-muted-foreground">
-              <span className="text-kanagawa-green">›</span>
-              <span className="pointer-coarse:hidden">{t('journey.hint')}</span>
-              <span className="hidden pointer-coarse:inline">{t('journey.hintTouch')}</span>
-            </p>
-            <div className="flex items-center gap-1">
-              <Button type="button" variant="ghost" size="icon-sm" aria-label={t('journey.previous')} onClick={() => select(selected - 1)}>
-                <ChevronLeft />
-              </Button>
-              <span className="min-w-12 text-center text-xs text-muted-foreground tabular-nums" aria-live="polite">
-                {t('journey.counter', { current: selected + 1, total: journeyEntries.length })}
-              </span>
-              <Button type="button" variant="ghost" size="icon-sm" aria-label={t('journey.next')} onClick={() => select(selected + 1)}>
-                <ChevronRight />
-              </Button>
+      <div {...reveal('window', 3)} className="mt-8">
+        <TerminalWindow title={t('journey.windowTitle')}>
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="flex gap-2 text-xs text-muted-foreground">
+                <span className="text-kanagawa-green">›</span>
+                <span className="pointer-coarse:hidden">{t('journey.hint')}</span>
+                <span className="hidden pointer-coarse:inline">{t('journey.hintTouch')}</span>
+              </p>
+              <div className="flex items-center gap-1">
+                <Button type="button" variant="ghost" size="icon-sm" aria-label={t('journey.previous')} onClick={() => select(selected - 1)}>
+                  <ChevronLeft />
+                </Button>
+                <span className="min-w-12 text-center text-xs text-muted-foreground tabular-nums" aria-live="polite">
+                  {t('journey.counter', { current: selected + 1, total: journeyEntries.length })}
+                </span>
+                <Button type="button" variant="ghost" size="icon-sm" aria-label={t('journey.next')} onClick={() => select(selected + 1)}>
+                  <ChevronRight />
+                </Button>
+              </div>
             </div>
-          </div>
 
-          <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3">
-            <div className="flex flex-col pt-7 text-xs">
-              {journeyLanes.map((lane) => {
-                const Icon = laneStyles[lane].icon
-                return (
-                  <div key={lane} className={cn('flex h-16 items-center gap-1.5', laneStyles[lane].text)}>
-                    <Icon className="size-3.5" />
-                    <span className="hidden sm:inline">{t(`journey.lanes.${lane}`)}</span>
+            <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3">
+              <div className="flex flex-col pt-7 text-xs">
+                {journeyLanes.map((lane) => {
+                  const Icon = laneStyles[lane].icon
+                  return (
+                    <div key={lane} className={cn('flex h-16 items-center gap-1.5', laneStyles[lane].text)}>
+                      <Icon className="size-3.5" />
+                      <span className="hidden sm:inline">{t(`journey.lanes.${lane}`)}</span>
+                    </div>
+                  )
+                })}
+              </div>
+
+              <div
+                ref={scrollerRef}
+                className="overflow-x-auto overscroll-x-contain [mask-image:linear-gradient(to_right,transparent,#000_1.5rem,#000_calc(100%-1.5rem),transparent)] md:[mask-image:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
+                <div role="toolbar" aria-label={t('journey.label')} className="relative min-w-[44rem]">
+                  <div className="relative h-7 text-[0.7rem] text-muted-foreground">
+                    {years.map((year, index) => (
+                      <span
+                        key={year}
+                        className="journey-tick absolute top-1 -translate-x-1/2 tabular-nums first:translate-x-0"
+                        style={{ left: `${toPercent(year * 12)}%`, '--i': index } as CSSProperties}
+                      >
+                        {year}
+                      </span>
+                    ))}
                   </div>
-                )
-              })}
-            </div>
 
-            <div
-              ref={scrollerRef}
-              className="overflow-x-auto overscroll-x-contain [mask-image:linear-gradient(to_right,transparent,#000_1.5rem,#000_calc(100%-1.5rem),transparent)] md:[mask-image:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            >
-              <div role="toolbar" aria-label={t('journey.label')} className="relative min-w-[44rem]">
-                <div className="relative h-7 text-[0.7rem] text-muted-foreground">
-                  {years.map((year, index) => (
-                    <span
-                      key={year}
-                      className="journey-tick absolute top-1 -translate-x-1/2 tabular-nums first:translate-x-0"
-                      style={{ left: `${toPercent(year * 12)}%`, '--i': index } as CSSProperties}
-                    >
-                      {year}
-                    </span>
-                  ))}
-                </div>
+                  <div className="relative">
+                    {years.map((year) => (
+                      <span
+                        key={year}
+                        aria-hidden
+                        className="absolute inset-y-0 w-px bg-border"
+                        style={{ left: `${toPercent(year * 12)}%` }}
+                      />
+                    ))}
 
-                <div className="relative">
-                  {years.map((year) => (
                     <span
-                      key={year}
                       aria-hidden
-                      className="absolute inset-y-0 w-px bg-border"
-                      style={{ left: `${toPercent(year * 12)}%` }}
+                      className="journey-cursor pointer-events-none absolute inset-y-0 left-0 w-full origin-left bg-primary/8"
+                      style={{ transform: `translateX(${current.left}%) scaleX(${current.width / 100})` }}
                     />
-                  ))}
 
-                  <span
-                    aria-hidden
-                    className="journey-cursor pointer-events-none absolute inset-y-0 left-0 w-full origin-left bg-primary/8"
-                    style={{ transform: `translateX(${current.left}%) scaleX(${current.width / 100})` }}
-                  />
-
-                  {journeyLanes.map((lane) => (
-                    <div key={lane} className="relative h-16 border-b border-dashed border-border last:border-b-0">
-                      {entries
-                        .filter((item) => item.entry.lane === lane)
-                        .map((item) => {
-                          const { entry, order, left, width, futureShare } = item
-                          const index = journeyEntries.indexOf(entry)
-                          const style = laneStyles[lane]
-                          return (
-                            <button
-                              key={entry.id}
-                              ref={(node) => {
-                                barRefs.current[index] = node
-                              }}
-                              type="button"
-                              tabIndex={index === selected ? 0 : -1}
-                              data-selected={index === selected}
-                              aria-pressed={index === selected}
-                              aria-haspopup="dialog"
-                              aria-label={`${t(`journey.items.${entry.id}.role`)}, ${entry.org}, ${periodOf(item)}`}
-                              onClick={() => {
-                                select(index)
-                                setOpen(true)
-                              }}
-                              onKeyDown={onBarKeyDown}
-                              className="group absolute inset-y-2 cursor-pointer rounded-md text-left outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
-                              style={{ left: `${left}%`, width: `${width}%`, '--i': order } as CSSProperties}
-                            >
-                              <span
-                                className={cn(
-                                  'journey-fill absolute inset-0 overflow-hidden rounded-md border transition-[background-color,border-color,box-shadow] duration-300 group-hover:shadow-md group-data-[selected=true]:shadow-lg',
-                                  style.bar,
-                                )}
+                    {journeyLanes.map((lane) => (
+                      <div key={lane} className="relative h-16 border-b border-dashed border-border last:border-b-0">
+                        {entries
+                          .filter((item) => item.entry.lane === lane)
+                          .map((item) => {
+                            const { entry, order, left, width, futureShare } = item
+                            const index = journeyEntries.indexOf(entry)
+                            const style = laneStyles[lane]
+                            return (
+                              <button
+                                key={entry.id}
+                                ref={(node) => {
+                                  barRefs.current[index] = node
+                                }}
+                                type="button"
+                                tabIndex={index === selected ? 0 : -1}
+                                data-selected={index === selected}
+                                aria-pressed={index === selected}
+                                aria-haspopup="dialog"
+                                aria-label={`${t(`journey.items.${entry.id}.role`)}, ${entry.org}, ${periodOf(item)}`}
+                                onClick={() => {
+                                  select(index)
+                                  setOpen(true)
+                                }}
+                                onKeyDown={onBarKeyDown}
+                                className="group absolute inset-y-2 cursor-pointer rounded-md text-left outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                                style={{ left: `${left}%`, width: `${width}%`, '--i': order } as CSSProperties}
                               >
-                                {futureShare > 0 && (
-                                  <span
-                                    className={cn('absolute inset-y-0 right-0 overflow-hidden border-l border-dashed opacity-40', style.text)}
-                                    style={{ width: `${futureShare * 100}%` }}
-                                  >
-                                    <span className="journey-stripes absolute inset-y-0 -left-2.5 right-0" />
+                                <span
+                                  className={cn(
+                                    'journey-fill absolute inset-0 overflow-hidden rounded-md border transition-[background-color,border-color,box-shadow] duration-300 group-hover:shadow-md group-data-[selected=true]:shadow-lg',
+                                    style.bar,
+                                  )}
+                                >
+                                  {futureShare > 0 && (
+                                    <span
+                                      className={cn('absolute inset-y-0 right-0 overflow-hidden border-l border-dashed opacity-40', style.text)}
+                                      style={{ width: `${futureShare * 100}%` }}
+                                    >
+                                      <span className="journey-stripes absolute inset-y-0 -left-2.5 right-0" />
+                                    </span>
+                                  )}
+                                  <span className="journey-sheen absolute inset-y-0 -left-1/2 w-1/2" />
+                                </span>
+                                <span className="journey-label relative flex h-full min-w-0 flex-col justify-center px-2.5 leading-tight">
+                                  <span className={cn('truncate text-[0.65rem]', style.text)}>{entry.org}</span>
+                                  <span className="truncate text-xs font-medium">{t(`journey.items.${entry.id}.short`)}</span>
+                                </span>
+                                {!entry.end && (
+                                  <span className="journey-label absolute top-1/2 -right-1 flex size-2.5 -translate-y-1/2">
+                                    <span className="absolute inset-0 animate-ping rounded-full bg-kanagawa-green opacity-70 motion-reduce:animate-none" />
+                                    <span className="relative size-2.5 rounded-full bg-kanagawa-green" />
                                   </span>
                                 )}
-                                <span className="journey-sheen absolute inset-y-0 -left-1/2 w-1/2" />
-                              </span>
-                              <span className="journey-label relative flex h-full min-w-0 flex-col justify-center px-2.5 leading-tight">
-                                <span className={cn('truncate text-[0.65rem]', style.text)}>{entry.org}</span>
-                                <span className="truncate text-xs font-medium">{t(`journey.items.${entry.id}.short`)}</span>
-                              </span>
-                              {!entry.end && (
-                                <span className="absolute top-1/2 -right-1 flex size-2.5 -translate-y-1/2">
-                                  <span className="absolute inset-0 animate-ping rounded-full bg-kanagawa-green opacity-70 motion-reduce:animate-none" />
-                                  <span className="relative size-2.5 rounded-full bg-kanagawa-green" />
-                                </span>
-                              )}
-                            </button>
-                          )
-                        })}
-                    </div>
-                  ))}
+                              </button>
+                            )
+                          })}
+                      </div>
+                    ))}
 
-                  <div
-                    aria-hidden
-                    className="journey-today pointer-events-none absolute -top-7 bottom-0 flex w-px flex-col items-center bg-kanagawa-red/70"
-                    style={{ left: `${toPercent(now)}%` }}
-                  >
-                    <span className="-translate-y-0.5 rounded-sm bg-kanagawa-red px-1 text-[0.6rem] leading-4 text-background">
-                      {t('journey.today')}
-                    </span>
+                    <div
+                      aria-hidden
+                      className="journey-today pointer-events-none absolute -top-7 bottom-0 flex w-px flex-col items-center bg-kanagawa-red/70"
+                      style={{ left: `${toPercent(now)}%` }}
+                    >
+                      <span className="-translate-y-0.5 rounded-sm bg-kanagawa-red px-1 text-[0.6rem] leading-4 text-background">
+                        {t('journey.today')}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <JourneyPreview
-            key={current.entry.id}
-            entry={current.entry}
-            period={periodOf(current)}
-            duration={formatDuration(current.info.months)}
-            ongoing={current.info.ongoing}
-            upcoming={current.info.upcoming}
-            onOpen={() => setOpen(true)}
-          />
-        </div>
-      </TerminalWindow>
+            <JourneyPreview
+              key={current.entry.id}
+              entry={current.entry}
+              period={periodOf(current)}
+              duration={formatDuration(current.info.months)}
+              ongoing={current.info.ongoing}
+              upcoming={current.info.upcoming}
+              onOpen={() => setOpen(true)}
+            />
+          </div>
+        </TerminalWindow>
+      </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
