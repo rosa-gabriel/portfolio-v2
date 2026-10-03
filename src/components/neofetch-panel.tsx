@@ -23,7 +23,7 @@ export function NeofetchPanel() {
   ]
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-3 text-[13px] sm:gap-4 sm:text-sm">
       <AvatarPanel />
       <div className="flex min-w-0 flex-col gap-0.5">
         <p className="text-kanagawa-blue font-semibold">{HOST}</p>

@@ -150,7 +150,8 @@ export function Journey() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="flex gap-2 text-xs text-muted-foreground">
               <span className="text-kanagawa-green">›</span>
-              {t('journey.hint')}
+              <span className="pointer-coarse:hidden">{t('journey.hint')}</span>
+              <span className="hidden pointer-coarse:inline">{t('journey.hintTouch')}</span>
             </p>
             <div className="flex items-center gap-1">
               <Button type="button" variant="ghost" size="icon-sm" aria-label={t('journey.previous')} onClick={() => select(selected - 1)}>
@@ -407,7 +408,9 @@ function JourneyDetails(props: EntryViewProps) {
     <div className="flex min-h-0 flex-col overflow-y-auto">
       <DialogHeader className="relative shrink-0 gap-3 overflow-hidden border-b border-border bg-secondary px-5 pt-5 pb-4">
         <span aria-hidden className={cn('journey-glow pointer-events-none absolute -top-16 -right-10 size-48 rounded-full blur-3xl', style.text)} />
-        <EntryMeta {...props} />
+        <div className="pr-8">
+          <EntryMeta {...props} />
+        </div>
         <DialogTitle className="pr-8 text-xl leading-tight font-semibold tracking-tight sm:text-2xl">
           {t(`journey.items.${entry.id}.role`)}
         </DialogTitle>

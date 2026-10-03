@@ -4,9 +4,11 @@ const PETAL_PATH = 'M32 32C18 30 15 14 32 5C49 14 46 30 32 32Z'
 const PETAL_CENTER = { x: 32, y: 18.5 }
 const PETAL_BOX = 32
 const PETAL_COLOR_VARS = ['--petal-1', '--petal-2', '--petal-3']
-const PIXELS_PER_PETAL = 90
-const MIN_SPAWN_INTERVAL_MS = 100
-const MAX_PETALS = 28
+const COMPACT_BREAKPOINT = 640
+const SPAWN = {
+  regular: { pixelsPerPetal: 90, minIntervalMs: 100, maxPetals: 28, maxBurst: 3 },
+  compact: { pixelsPerPetal: 320, minIntervalMs: 350, maxPetals: 5, maxBurst: 1 },
+}
 const MIN_VELOCITY = 0.3
 const FULL_RATE_VELOCITY = 1.8
 const FALL_DISTANCE_VH = 25
@@ -148,9 +150,10 @@ export function FallingPetals() {
       const weight = Math.min(Math.max((velocity - MIN_VELOCITY) / (FULL_RATE_VELOCITY - MIN_VELOCITY), 0), 1)
       distance += delta * weight
 
-      if (distance < PIXELS_PER_PETAL || now - lastSpawn < MIN_SPAWN_INTERVAL_MS) return
+      const spawn = window.innerWidth < COMPACT_BREAKPOINT ? SPAWN.compact : SPAWN.regular
+      if (distance < spawn.pixelsPerPetal || now - lastSpawn < spawn.minIntervalMs) return
 
-      const count = Math.min(Math.floor(distance / PIXELS_PER_PETAL), 3)
+      const count = Math.min(Math.floor(distance / spawn.pixelsPerPetal), spawn.maxBurst)
       distance = 0
       lastSpawn = now
 
@@ -174,7 +177,7 @@ export function FallingPetals() {
           axisTilt: random(0.05, 0.25),
         })
       }
-      petals.splice(0, Math.max(0, petals.length - MAX_PETALS))
+      petals.splice(0, Math.max(0, petals.length - spawn.maxPetals))
       if (!frame) frame = requestAnimationFrame(draw)
     }
 

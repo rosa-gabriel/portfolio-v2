@@ -5,7 +5,7 @@ export function AvatarPanel() {
   const [failed, setFailed] = useState(false)
 
   return (
-    <div className="relative size-24 shrink-0 overflow-hidden rounded-sm border border-border bg-secondary sm:size-28">
+    <div className="relative size-20 shrink-0 overflow-hidden rounded-sm border border-border bg-secondary sm:size-28">
       {failed ? (
         <div className="flex size-full flex-col items-center justify-center gap-1 text-muted-foreground">
           <User className="size-7" />

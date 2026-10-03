@@ -68,7 +68,8 @@
     "text": "Built with Vite, React and a Kanagawa colorscheme."
   },
   "flow": {
-    "reset": "Reset"
+    "reset": "Reset",
+    "tryThis": "Things to try ({{count}})"
   },
   "gateway": {
     "eyebrow": "04/ api gateway",
@@ -517,7 +518,8 @@
           }
         ]
       }
-    }
+    },
+    "hintTouch": "Tap a bar, or swipe the timeline, to explore."
   },
   "certificates": {
     "eyebrow": "02/ certificates",
