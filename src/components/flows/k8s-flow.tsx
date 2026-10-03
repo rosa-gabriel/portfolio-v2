@@ -12,7 +12,8 @@ type Note = 'idle' | 'spike' | 'node' | 'deploy'
 type Anchor = { kind: 'users' } | { kind: 'lb' } | { kind: 'pod'; id: number }
 type PodState = 'starting' | 'running' | 'terminating' | 'deploying'
 
-type Pod = { id: number; node: number; slot: number; version: 1 | 2; state: PodState; since: number }
+type Version = 1 | 2
+type Pod = { id: number; node: number; slot: number; version: Version; state: PodState; since: number }
 type NodeState = { up: boolean }
 
 type Sim = Engine<Anchor> & {
@@ -20,6 +21,7 @@ type Sim = Engine<Anchor> & {
   nodes: NodeState[]
   pods: Pod[]
   desired: number
+  version: Version
   recent: number[]
   boostUntil: number
   served: number
@@ -52,6 +54,7 @@ function createSim(mode: Mode): Sim {
     nodes: Array.from({ length: NODES }, () => ({ up: true })),
     pods: [],
     desired: mode === 'k8s' ? MIN_PODS : NODES,
+    version: 1,
     recent: [],
     boostUntil: -Infinity,
     served: 0,
@@ -73,7 +76,7 @@ function createSim(mode: Mode): Sim {
   return sim
 }
 
-function newPod(sim: Sim, node: number, slot: number, version: 1 | 2, state: PodState): Pod {
+function newPod(sim: Sim, node: number, slot: number, version: Version, state: PodState): Pod {
   return { id: sim.nextId++, node, slot, version, state, since: sim.time }
 }
 
@@ -97,7 +100,7 @@ function freeSlot(sim: Sim): { node: number; slot: number } | null {
   return { node: target.node, slot }
 }
 
-function startPod(sim: Sim, version: 1 | 2, onReady?: () => void) {
+function startPod(sim: Sim, version: Version, onReady?: () => void) {
   const place = freeSlot(sim)
   if (!place) return false
   const pod = newPod(sim, place.node, place.slot, version, 'starting')
@@ -118,19 +121,33 @@ function terminate(sim: Sim, pod: Pod) {
   })
 }
 
-function currentVersion(sim: Sim): 1 | 2 {
-  return sim.pods.some((pod) => pod.version === 2 && pod.state !== 'terminating') ? 2 : 1
-}
+const nextVersion = (sim: Sim): Version => (sim.version === 1 ? 2 : 1)
 
 function reconcile(sim: Sim) {
   const pods = alive(sim)
+  const outdated = pods.filter((pod) => pod.version !== sim.version)
+  const surge = outdated.length > 0 ? 1 : 0
+
   if (pods.length < sim.desired) {
-    for (let i = pods.length; i < sim.desired; i++) if (!startPod(sim, currentVersion(sim))) break
-  } else if (pods.length > sim.desired) {
-    pods
-      .slice(-(pods.length - sim.desired))
-      .forEach((pod) => terminate(sim, pod))
+    for (let i = pods.length; i < sim.desired; i++) if (!startPod(sim, sim.version)) break
+    return
   }
+
+  if (pods.length > sim.desired + surge) {
+    const current = pods.filter((pod) => pod.version === sim.version).reverse()
+    const excess = [...outdated, ...current].slice(0, pods.length - sim.desired - surge)
+    excess.forEach((pod) => terminate(sim, pod))
+    return
+  }
+
+  if (!outdated.length || pods.some((pod) => pod.state === 'starting')) return
+
+  const started = startPod(sim, sim.version, () => {
+    const old = alive(sim).find((pod) => pod.version !== sim.version && pod.state === 'running')
+    if (old) terminate(sim, old)
+    reconcile(sim)
+  })
+  if (!started) terminate(sim, outdated[0])
 }
 
 function request(sim: Sim) {
@@ -187,33 +204,24 @@ function killNode(sim: Sim) {
 
 function deploy(sim: Sim) {
   note(sim, 'deploy')
-  if (sim.mode === 'servers') {
-    sim.pods.forEach((pod, order) => {
-      schedule(sim, order * TIMING.serverDeploy, () => {
-        pod.state = 'deploying'
-        sim.manual++
-        schedule(sim, TIMING.serverDeploy, () => {
-          pod.version = 2
-          pod.state = 'running'
-        })
-      })
-    })
+  sim.version = nextVersion(sim)
+
+  if (sim.mode === 'k8s') {
+    reconcile(sim)
     return
   }
 
-  const old = alive(sim).filter((pod) => pod.version === 1)
-  const rollNext = (index: number) => {
-    if (index >= old.length) return
-    const started = startPod(sim, 2, () => {
-      terminate(sim, old[index])
-      rollNext(index + 1)
+  const target = sim.version
+  sim.pods.forEach((pod, order) => {
+    schedule(sim, order * TIMING.serverDeploy, () => {
+      pod.state = 'deploying'
+      sim.manual++
+      schedule(sim, TIMING.serverDeploy, () => {
+        pod.version = target
+        pod.state = 'running'
+      })
     })
-    if (!started) {
-      terminate(sim, old[index])
-      schedule(sim, TIMING.terminate + 50, () => startPod(sim, 2, () => rollNext(index + 1)))
-    }
-  }
-  rollNext(0)
+  })
 }
 
 function step(sim: Sim, dt: number, autoplay: boolean) {
@@ -351,7 +359,9 @@ export function K8sFlow() {
     const prefix = isK8s ? 'k8s' : 'servers'
     if (sim.note === 'spike') return t(`k8s.caption.${prefix}Spike`, { count: isK8s ? replicas : sim.failed })
     if (sim.note === 'node') return t(`k8s.caption.${prefix}Node`)
-    if (sim.note === 'deploy') return t(`k8s.caption.${prefix}Deploy`)
+    if (sim.note === 'deploy') {
+      return t(`k8s.caption.${prefix}Deploy`, { next: sim.version, previous: nextVersion(sim) })
+    }
     return t(`k8s.caption.${prefix}Idle`)
   })()
 
@@ -374,7 +384,11 @@ export function K8sFlow() {
         <>
           <FlowAction icon={TrendingUp} label={t('k8s.spike')} onClick={act(() => spike(sim))} />
           <FlowAction icon={ServerCrash} label={t('k8s.killNode')} onClick={act(() => killNode(sim))} />
-          <FlowAction icon={Rocket} label={t('k8s.deploy')} onClick={act(() => deploy(sim))} />
+          <FlowAction
+            icon={Rocket}
+            label={t('k8s.deploy', { version: nextVersion(sim) })}
+            onClick={act(() => deploy(sim))}
+          />
           <FlowAction icon={RotateCcw} label={t('flow.reset')} variant="ghost" onClick={() => setSim(createSim(sim.mode))} />
         </>
       }
