@@ -32,7 +32,7 @@ export function ContactCta() {
         {t('contact.subtitle')}
       </p>
 
-      <div className="mt-8 grid items-start gap-8 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+      <div className="mt-8 grid grid-cols-[minmax(0,1fr)] items-start gap-8 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
         <div {...reveal('window', 3)}>
           <TerminalWindow title="looking-for.md">
             <div className="flex flex-col gap-4">

@@ -53,12 +53,12 @@ export function Highlights() {
             data-index={index}
             data-visible={seen.has(index) || undefined}
             aria-roledescription="slide"
-            className="flex w-[85%] flex-none snap-start flex-col gap-3 rounded-md border border-border bg-card p-5 sm:w-[calc(50%-0.5rem)] lg:w-[calc((100%-3rem)/4)]"
+            className="flex w-[85%] flex-none snap-start flex-col gap-3 rounded-md border border-border bg-card p-5 sm:w-[calc(50%-0.5rem)] lg:w-[calc((100%-3rem)/4)] lg:gap-2 lg:p-4"
           >
             <p className="truncate text-xs text-muted-foreground">
               <span className="text-kanagawa-green">$</span> cd {path}
             </p>
-            <p className="text-3xl leading-tight font-semibold tracking-tight">
+            <p className="text-3xl leading-tight font-semibold tracking-tight lg:text-2xl">
               <span className="gain">{t(`highlights.items.${id}.headline`)}</span>
             </p>
             <p className="text-sm text-muted-foreground">{t(`highlights.items.${id}.detail`)}</p>
