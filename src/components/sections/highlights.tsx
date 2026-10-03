@@ -1,8 +1,15 @@
+import { ArrowUpRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { CarouselArrows, CarouselDots } from '@/components/carousel-controls'
 import { useCarousel } from '@/hooks/use-carousel'
 
-const HIGHLIGHTS = [
+type Highlight = {
+  id: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'h7' | 'h8'
+  path: string
+  article?: string
+}
+
+const HIGHLIGHTS: Highlight[] = [
   { id: 'h1', path: '~/weg/developers-suite' },
   { id: 'h2', path: '~/weg/self-service-infra' },
   { id: 'h3', path: '~/weg/streaming-platform' },
@@ -11,7 +18,7 @@ const HIGHLIGHTS = [
   { id: 'h6', path: '~/weg/developers-suite' },
   { id: 'h7', path: '~/weg/streaming-platform' },
   { id: 'h8', path: '~/thesis/oxid-gateway' },
-] as const
+]
 
 const AUTO_ADVANCE_MS = 4500
 
@@ -39,7 +46,7 @@ export function Highlights() {
         ref={scrollerRef}
         className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {HIGHLIGHTS.map(({ id, path }, index) => (
+        {HIGHLIGHTS.map(({ id, path, article }, index) => (
           <article
             key={id}
             data-index={index}
@@ -54,6 +61,17 @@ export function Highlights() {
               <span className="gain">{t(`highlights.items.${id}.headline`)}</span>
             </p>
             <p className="text-sm text-muted-foreground">{t(`highlights.items.${id}.detail`)}</p>
+            {article && (
+              <a
+                href={article}
+                target="_blank"
+                rel="noreferrer"
+                className="group mt-auto inline-flex items-center gap-1 self-start text-xs text-primary hover:underline"
+              >
+                <span className="text-kanagawa-green">$</span> {t('highlights.readArticle')}
+                <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            )}
           </article>
         ))}
       </div>

@@ -280,6 +280,7 @@ export function AuthFlow() {
 
   return (
     <FlowSection
+      id="demo-identity"
       eyebrow={t('auth.eyebrow')}
       title={t('auth.title')}
       subtitle={t('auth.subtitle')}

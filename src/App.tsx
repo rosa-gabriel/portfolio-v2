@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Footer } from '@/components/footer'
 import { ContactCta } from '@/components/sections/contact-cta'
 import { Hero } from '@/components/sections/hero'
+import { PlaygroundIntro } from '@/components/sections/playground-intro'
 import { ScrollCue } from '@/components/scroll-cue'
 import { Highlights } from '@/components/sections/highlights'
 import { StatusBar } from '@/components/status-bar'
@@ -20,6 +21,8 @@ const DddFlow = lazyFlow(() => import('@/components/flows/ddd-flow'), 'DddFlow')
 const AgentsFlow = lazyFlow(() => import('@/components/flows/agents-flow'), 'AgentsFlow')
 const Journey = lazyFlow(() => import('@/components/sections/journey'), 'Journey')
 const Certificates = lazyFlow(() => import('@/components/sections/certificates'), 'Certificates')
+const CaseStudies = lazyFlow(() => import('@/components/sections/case-studies'), 'CaseStudies')
+const Skills = lazyFlow(() => import('@/components/sections/skills'), 'Skills')
 
 function App() {
   const { t, i18n } = useTranslation()
@@ -43,17 +46,20 @@ function App() {
         <div id="content" className="scroll-mt-12">
           <Suspense fallback={<div className="min-h-svh" />}>
             <Journey />
+            <CaseStudies />
+            <Skills />
             <Certificates />
           </Suspense>
         </div>
+        <PlaygroundIntro />
         <Suspense fallback={<div className="min-h-svh" />}>
           <ArchitectureFlow />
           <GatewayFlow />
-          <AgentsFlow />
+          <AuthFlow />
           <K8sFlow />
           <ObservabilityFlow />
           <DddFlow />
-          <AuthFlow />
+          <AgentsFlow />
         </Suspense>
         <ContactCta />
       </main>

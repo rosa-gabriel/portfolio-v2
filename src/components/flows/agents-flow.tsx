@@ -251,6 +251,7 @@ export function AgentsFlow() {
 
   return (
     <FlowSection
+      id="demo-agents"
       eyebrow={t('agents.eyebrow')}
       title={t('agents.title')}
       subtitle={t('agents.subtitle')}

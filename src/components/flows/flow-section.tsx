@@ -13,6 +13,7 @@ export type FlowMetric = {
 }
 
 type FlowSectionProps<M extends string> = {
+  id: string
   eyebrow: string
   title: string
   subtitle: string
@@ -32,6 +33,7 @@ type FlowSectionProps<M extends string> = {
 }
 
 export function FlowSection<M extends string>({
+  id,
   eyebrow,
   title,
   subtitle,
@@ -50,7 +52,7 @@ export function FlowSection<M extends string>({
   children,
 }: FlowSectionProps<M>) {
   return (
-    <section className="render-on-view mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-16">
+    <section id={id} className="render-on-view mx-auto max-w-5xl scroll-mt-12 px-4 py-14 sm:px-6 sm:py-16">
       <p {...reveal('type')} className="text-kanagawa-blue text-sm">
         {eyebrow}
       </p>

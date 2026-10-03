@@ -145,6 +145,7 @@ export function ArchitectureFlow() {
 
   return (
     <FlowSection
+      id="demo-streaming"
       eyebrow={t('arch.eyebrow')}
       title={t('arch.title')}
       subtitle={t('arch.subtitle')}

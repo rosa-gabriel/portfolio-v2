@@ -301,6 +301,7 @@ export function GatewayFlow() {
 
   return (
     <FlowSection
+      id="demo-gateway"
       eyebrow={t('gateway.eyebrow')}
       title={t('gateway.title')}
       subtitle={t('gateway.subtitle')}

@@ -1,7 +1,9 @@
 import { Briefcase, Code2, Mail } from 'lucide-react'
 
+export const email = 'gabriel.edu.rosa@proton.me'
+
 export const contactLinks = [
-  { labelKey: 'contact.emailLabel', href: 'mailto:gabriel.edu.rosa@proton.me', Icon: Mail },
+  { labelKey: 'contact.emailLabel', href: `mailto:${email}`, Icon: Mail },
   { labelKey: 'contact.githubLabel', href: 'https://github.com/rosa-gabriel', Icon: Code2 },
   {
     labelKey: 'contact.linkedinLabel',

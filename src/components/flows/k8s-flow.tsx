@@ -357,6 +357,7 @@ export function K8sFlow() {
 
   return (
     <FlowSection
+      id="demo-kubernetes"
       eyebrow={t('k8s.eyebrow')}
       title={t('k8s.title')}
       subtitle={t('k8s.subtitle')}

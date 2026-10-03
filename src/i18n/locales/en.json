@@ -13,7 +13,7 @@
     "scrollDown": "Scroll to content"
   },
   "arch": {
-    "eyebrow": "03/ streaming",
+    "eyebrow": "05.1/ streaming",
     "title": "Batch or streaming?",
     "subtitle": "Two ways to feed a data lake, running side by side. A batch ETL where a cron job full-loads the source table into the raw layer on a schedule, and streaming, where Kafka and Flink clean events in real time, in parallel, straight into the silver layer.",
     "goal1": "Send a few events and follow them end to end.",
@@ -57,7 +57,7 @@
     }
   },
   "contact": {
-    "eyebrow": "contact",
+    "eyebrow": "06/ contact",
     "title": "Let's build something",
     "subtitle": "Open to new opportunities and interesting problems.",
     "emailLabel": "Email",
@@ -72,7 +72,7 @@
     "tryThis": "Things to try ({{count}})"
   },
   "gateway": {
-    "eyebrow": "04/ api gateway",
+    "eyebrow": "05.2/ api gateway",
     "title": "One door, with a shield",
     "subtitle": "Kong Gateway sits in front of every service. It authenticates, rate limits and routes each request, so the services behind it only ever see clean, expected traffic.",
     "goal1": "Send a few requests and watch Kong route them.",
@@ -105,7 +105,7 @@
     }
   },
   "auth": {
-    "eyebrow": "09/ identity",
+    "eyebrow": "05.3/ identity",
     "title": "Log in once, everywhere",
     "subtitle": "Keycloak speaks OpenID Connect: apps hand authentication to one identity provider and get signed tokens back, which any API can verify on its own.",
     "goal1": "Log in to the portal, then open the dashboard.",
@@ -152,7 +152,7 @@
     }
   },
   "k8s": {
-    "eyebrow": "06/ kubernetes",
+    "eyebrow": "05.4/ kubernetes",
     "title": "Same app, cloud and on-premise",
     "subtitle": "Kubernetes runs the same manifests on a cloud cluster and an on-premise cluster. It scales with traffic, heals itself when a machine dies and ships new versions without downtime.",
     "goal1": "Fire a traffic spike in both modes and watch the replicas.",
@@ -187,7 +187,7 @@
     }
   },
   "obs": {
-    "eyebrow": "07/ observability",
+    "eyebrow": "05.5/ observability",
     "title": "See problems before users do",
     "subtitle": "Services emit metrics, logs and traces through OpenTelemetry, and Grafana turns them into live dashboards and alerts. The difference shows up in one number: how long it takes to notice.",
     "goal1": "Inject slowness in payments and see how fast each mode notices.",
@@ -218,7 +218,7 @@
     }
   },
   "ddd": {
-    "eyebrow": "08/ domain-driven design",
+    "eyebrow": "05.6/ domain-driven design",
     "title": "Boundaries that match the business",
     "subtitle": "Domain-driven design splits a system into bounded contexts, each with its own model and language, talking through domain events instead of shared tables.",
     "goal1": "Place a few orders and follow the domain events.",
@@ -260,7 +260,7 @@
     }
   },
   "agents": {
-    "eyebrow": "05/ ai-assisted engineering",
+    "eyebrow": "05.7/ ai-assisted engineering",
     "title": "More hands, same judgment",
     "subtitle": "I split work into well-scoped tasks and hand them to Claude Code agents, each in its own git worktree. They implement in parallel; I stay on design and review every change before it ships.",
     "goal1": "Add a batch of tasks and work through them solo.",
@@ -329,7 +329,8 @@
         "headline": "Rust API gateway",
         "detail": "high performance, production-grade reliability"
       }
-    }
+    },
+    "readArticle": "Read article"
   },
   "journey": {
     "eyebrow": "01/ journey",
@@ -522,7 +523,7 @@
     "hintTouch": "Tap a bar, or swipe the timeline, to explore."
   },
   "certificates": {
-    "eyebrow": "02/ certificates",
+    "eyebrow": "04/ certificates",
     "title": "Extra credentials",
     "subtitle": "Courses and certifications I picked up along the way.",
     "issued": "issued",
@@ -531,5 +532,151 @@
     "previous": "Previous certificate",
     "next": "Next certificate",
     "goTo": "Go to certificate {{n}}"
+  },
+  "caseStudies": {
+    "eyebrow": "02/ case studies",
+    "title": "What I built",
+    "subtitle": "Real platforms, real constraints. The problem, my part in it, the decisions, and what changed.",
+    "open": "Read case study",
+    "context": "context",
+    "role": "my role",
+    "decisions": "key decisions",
+    "outcome": "outcome",
+    "stack": "stack",
+    "seeLive": "See it running",
+    "close": "Close",
+    "items": {
+      "streaming": {
+        "title": "Event streaming platform",
+        "summary": "An internal, on-premise streaming platform that lets any team publish and consume events without custom point-to-point integrations.",
+        "impact": "Decoupled, self-service integrations",
+        "context": "Enterprise integrations needed to move toward an event-driven model that scales and that teams can adopt on their own.",
+        "role": "Technical lead within Systems Architecture, leading the platform's architecture and implementation.",
+        "decisions": [
+          "Multi-broker environment: Kafka for streaming, RabbitMQ for messaging",
+          "Automated provisioning of connectors for databases and external systems into the central event bus",
+          "Apache Flink for real-time processing, transformation and enrichment",
+          "Hybrid architecture (on-premise and cloud) with cross-cluster replication",
+          "A low-code layer that hides event-driven complexity from product teams"
+        ],
+        "outcomes": [
+          "Integrations across the organization become decoupled and self-service",
+          "Streaming analytics and data enrichment in real time",
+          "Event-driven integration open to teams without streaming expertise"
+        ]
+      },
+      "devsuite": {
+        "title": "Developers Suite",
+        "summary": "An internal developer platform for API and system governance, used across an ecosystem of ~900 developers.",
+        "impact": "~900 developers",
+        "context": "With ~900 developers building integrations, teams duplicated work and had a hard time finding which systems and APIs already existed.",
+        "role": "Software architecture researcher in the Systems Architecture and Data Governance team. Designed the platform.",
+        "decisions": [
+          "A single, centralized platform for API and system governance",
+          "Standardized integration patterns shared by every team",
+          "Discoverability as a first-class feature: find systems before building new ones"
+        ],
+        "outcomes": [
+          "Less duplicated work across teams",
+          "Consistent integration patterns across the ecosystem",
+          "Systems and APIs that are easy to discover"
+        ]
+      },
+      "provisioning": {
+        "title": "Self-service infrastructure",
+        "summary": "A platform that provisions databases and Kubernetes environments on demand, without tickets.",
+        "impact": "300+ databases",
+        "context": "Provisioning databases and environments by hand was slow and added operational overhead for every new project.",
+        "role": "Built the provisioning platform and the CI/CD pipelines behind it.",
+        "decisions": [
+          "Automated, self-service provisioning of databases and Kubernetes environments",
+          "Support for PostgreSQL, MongoDB, MinIO and Redis",
+          "Reproducible CI/CD pipelines for infrastructure and applications",
+          "Automated Kubernetes deployments focused on reliability and consistency"
+        ],
+        "outcomes": [
+          "300+ databases provisioned and managed",
+          "Shorter provisioning time",
+          "Lower operational overhead"
+        ]
+      },
+      "gateway": {
+        "title": "API gateway, identity and observability",
+        "summary": "A shared front door for enterprise APIs, with standardized authentication and end-to-end visibility.",
+        "impact": "Micro-gateways, cloud and on-premise",
+        "context": "Each system reimplemented its own integration, security and monitoring logic.",
+        "role": "Architected the API gateway platform and standardized auth and observability.",
+        "decisions": [
+          "A centralized API gateway with Kong on Kubernetes",
+          "Evolved into a micro-gateway architecture, on-premise and in the cloud",
+          "Standardized authentication with OpenID Connect and Keycloak, including system-to-system",
+          "OpenTelemetry with centralized logs, metrics and tracing in Grafana"
+        ],
+        "outcomes": [
+          "Less integration logic duplicated across systems",
+          "Secure system-to-system communication",
+          "Better visibility and faster debugging"
+        ]
+      },
+      "oxid": {
+        "title": "Oxid Gateway (thesis)",
+        "summary": "A high-performance API gateway written in Rust, inspired by the real challenges of the gateway rollout at WEG.",
+        "impact": "API gateway in Rust",
+        "context": "My bachelor's thesis, built to explore what a gateway designed for performance from day one looks like.",
+        "role": "Designed and developed it end to end.",
+        "decisions": [
+          "Rust for predictable performance and memory safety",
+          "Modern proxy architecture patterns",
+          "Low-level performance optimizations"
+        ],
+        "outcomes": [
+          "A gateway focused on scalability, performance and production-grade reliability",
+          "Research that feeds back into how I design platforms"
+        ]
+      }
+    }
+  },
+  "skills": {
+    "eyebrow": "03/ skills",
+    "title": "The stack",
+    "subtitle": "What I use to design and run platforms, grouped by area.",
+    "windowTitle": "stack.yaml",
+    "groups": {
+      "streaming": "streaming",
+      "platform": "platform",
+      "data": "data",
+      "observability": "observability",
+      "languages": "languages",
+      "architecture": "architecture"
+    }
+  },
+  "playground": {
+    "eyebrow": "05/ playground",
+    "title": "Interactive deep dives",
+    "subtitle": "The patterns behind my work, running live in your browser. Switch modes, break things, and watch the architecture respond.",
+    "skip": "Skip to contact"
+  },
+  "availability": {
+    "status": "open to opportunities",
+    "workModel": "remote · hybrid · relocation",
+    "lookingFor": "What I'm looking for",
+    "rolesLabel": "roles",
+    "roles": [
+      "Software / Systems Architect",
+      "Staff / Senior Platform Engineer",
+      "Senior Backend / Distributed Systems",
+      "Data Streaming Engineer"
+    ],
+    "modelLabel": "work model",
+    "model": "Remote (international or Brazil), hybrid or on-site in Santa Catarina, open to relocation",
+    "locationLabel": "location",
+    "location": "Jaraguá do Sul, Brazil (UTC-3)",
+    "languagesLabel": "languages",
+    "languages": "Portuguese (native), English (C1)"
+  },
+  "copy": {
+    "copyEmail": "Copy email",
+    "copied": "Copied!",
+    "copiedAnnouncement": "Email address copied to clipboard"
   }
 }

@@ -9,6 +9,13 @@ export type Certificate = {
 
 export const certificates: Certificate[] = [
   {
+    id: 'english-c1',
+    title: 'English Proficiency, C1 (score 73)',
+    issuer: 'University of Michigan',
+    issued: '2020-11',
+    tags: ['English', 'C1'],
+  },
+  {
     id: 'cert-1',
     title: 'Certificate title',
     issuer: 'Issuer',

@@ -262,6 +262,7 @@ export function ObservabilityFlow() {
 
   return (
     <FlowSection
+      id="demo-observability"
       eyebrow={t('obs.eyebrow')}
       title={t('obs.title')}
       subtitle={t('obs.subtitle')}
