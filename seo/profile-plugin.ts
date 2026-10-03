@@ -23,7 +23,7 @@ type Item = (typeof en.journey.items)[keyof typeof en.journey.items]
 
 const jobTitle = en.journey.items.architect.role
 const description = en.hero.tagline
-const skills = skillGroups.flatMap((group) => [...group.skills])
+const skills = [...new Set(skillGroups.flatMap((group) => group.skills))]
 
 function experience(lane: JourneyEntry['lane']) {
   return journeyEntries
