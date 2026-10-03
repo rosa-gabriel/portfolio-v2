@@ -1,0 +1,106 @@
+\documentclass[a4paper,9pt]{extarticle}
+
+\usepackage{parskip}
+\usepackage{fontspec}
+
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\usepackage{xcolor}
+\usepackage[scale=0.9, top=.4in, bottom=.4in]{geometry}
+
+\usepackage{tabularx}
+\usepackage{enumitem}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\usepackage{titlesec}
+\titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{1pt}{4pt}{3pt}
+
+\usepackage[unicode, draft=false]{hyperref}
+\hypersetup{
+  pdftitle={Gabriel Rosa - Resume},
+  pdfauthor={Gabriel Rosa},
+  pdfsubject={Scalable Systems Architect},
+  pdfkeywords={Systems Architect, Platform Engineering, Event-Driven Architecture, Apache Kafka, Apache Flink, Kubernetes, Java, Go, Rust, Distributed Systems},
+  colorlinks=true, urlcolor=[HTML]{371e77}, linkcolor=[HTML]{371e77}
+}
+\color[HTML]{110223}
+
+\usepackage{fontawesome5}
+\usepackage{accsupp}
+% icons are hidden from text extraction so ATS parsers don't read them as stray characters
+\newcommand{\icon}[1]{\BeginAccSupp{method=plain,ActualText={}}#1\EndAccSupp{}}
+\usepackage[normalem]{ulem}
+
+% Arial is not installed everywhere (e.g. some Linux TeX setups); Liberation Sans has identical metrics
+\IfFontExistsTF{Arial}{\setmainfont{Arial}}{\setmainfont{Liberation Sans}}
+
+\setlist[itemize]{nosep, leftmargin=2em, itemsep=2pt, topsep=2pt}
+
+\newcommand{\role}[4]{%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textcolor[HTML]{1C033C}{\textbf{#1}} & \textcolor[HTML]{371e77}{#2} \\[1pt]
+    \textcolor[HTML]{371e77}{\textbf{\textit{#3}}} & \textcolor[HTML]{4B28A4}{\textit{#4}} \\
+  \end{tabularx}\par\vspace{1pt}%
+}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{tabularx}{\linewidth}{@{} C @{}}
+\color[HTML]{1C033C} \Huge{Gabriel Rosa} \\[4pt]
+\color[HTML]{371e77} \large{Scalable Systems Architect $|$ Event-Driven Platforms $|$ Platform Engineering} \\[5pt]
+\textcolor[HTML]{371e77}{\icon{\faMapMarker*} Jaraguá do Sul, Brazil (UTC-3) $|$ Open to remote, hybrid, on-site and relocation} \\[3pt]
+\textcolor[HTML]{371e77}{\href{mailto:gabriel.edu.rosa@proton.me}{\icon{\faEnvelope} gabriel.edu.rosa@proton.me}} $|$
+\textcolor[HTML]{371e77}{\href{https://rosa-gabriel.github.io}{\icon{\faGlobe} rosa-gabriel.github.io}} $|$
+\textcolor[HTML]{371e77}{\href{https://github.com/rosa-gabriel}{\icon{\raisebox{-0.05\height}{\faGithub}} github.com/rosa-gabriel}} $|$
+\textcolor[HTML]{371e77}{\href{https://www.linkedin.com/in/gabriel-edu-rosa/}{\icon{\raisebox{-0.05\height}{\faLinkedin}} linkedin.com/in/gabriel-edu-rosa}}
+\end{tabularx}
+
+\section{Summary}
+\color[HTML]{1C033C}Systems architect with 3+ years building event-driven and internal developer platforms at WEG. Saved R\$12M (BRL) by modernizing authentication, cut data sync delay from 1 day to 200 ms, and built platforms serving 1,000+ developers and 600+ databases.
+
+\section{Skills}
+\color[HTML]{1C033C}\textbf{Languages \& Frameworks:} Java, Go, Rust, TypeScript, JavaScript, Quarkus, NestJS\\[2pt]
+\textbf{Streaming \& Data:} Apache Kafka, Kafka Connect, Apache Flink, RabbitMQ, Databricks, Qlik Replicate, PostgreSQL, MongoDB, Oracle, Redis, MinIO\\[2pt]
+\textbf{Cloud \& Platform:} Kubernetes, AWS, Kong, Keycloak, OpenID Connect, OpenTelemetry, Grafana, CI/CD, SAP Business Suite\\[2pt]
+\textbf{Architecture:} Event-Driven Architecture, Domain-Driven Design, API Governance, Distributed Systems, Parallel Computing
+
+\section{Work Experience}
+\role{WEG, Jaraguá do Sul, Brazil}{Sep 2025 - Present}{Scalable Systems Architect}{Contract, Hybrid}
+\begin{itemize}
+    \item Leading the architecture of an on-premise event streaming platform (Kafka, RabbitMQ, Flink) that lets teams across the organization build decoupled, self-service integrations through a central event bus.
+    \item Built automated provisioning of connectors for databases and external systems, making integration with the central event bus a self-service step.
+    \item Implemented real-time data processing, transformation and enrichment with Apache Flink, enabling streaming analytics on enterprise data.
+    \item Designed a hybrid architecture (on-premise and AWS) with cross-cluster replication for multi-environment availability.
+    \item Leading a low-code platform for real-time integrations that abstracts event-driven complexity for teams without streaming expertise.
+    \item Java, Quarkus, Apache Kafka, Kafka Connect, Apache Flink, RabbitMQ, Kubernetes, AWS
+\end{itemize}
+
+\role{WEG, Jaraguá do Sul, Brazil}{Feb 2023 - Aug 2025}{Software Architecture Researcher}{Systems Architecture and Data Governance}
+\begin{itemize}
+    \item Led the replacement of WEG's authentication stack, standardizing user and system-to-system auth on OpenID Connect and Keycloak, saving R\$12M (BRL) in costs in a single project.
+    \item Cut data synchronization delay from 1 day to 200 ms by replacing cron-based batch jobs with an event-driven architecture.
+    \item Designed Developers Suite, an internal developer platform for API and system governance that now manages and guides 1,000+ developers, standardizing integration patterns across teams.
+    \item Built a self-service platform for provisioning databases and Kubernetes environments, now managing 600+ databases (PostgreSQL, MongoDB, Redis, MinIO) and cutting provisioning time.
+    \item Architected a centralized API gateway with Kong on Kubernetes and evolved it into a micro-gateway architecture across on-premise and cloud, reducing duplicated integration logic.
+    \item Implemented OpenTelemetry observability (logs, metrics and traces in Grafana) and reproducible CI/CD pipelines for automated Kubernetes deployments.
+    \item TypeScript, Kubernetes, Kong, Keycloak, OpenID Connect, OpenTelemetry, Grafana, PostgreSQL, MongoDB, Redis, MinIO
+\end{itemize}
+
+\section{Education}
+\role{Universidade do Estado de Santa Catarina (UDESC)}{Mar 2026 - Dec 2028 (expected)}{M.Sc. in Applied Computer Science, Advanced Parallel Programming}{Parallel and distributed computing, HPC}
+\role{Católica de Santa Catarina}{Mar 2022 - Dec 2025}{Bachelor's Degree in Software Engineering}{Research scholarship with WEG}
+
+\section{Project Work}
+\begin{itemize}
+    \item \textbf{Oxid Gateway (2025, bachelor's thesis):} Designed and built a high-performance API gateway in Rust, inspired by the API gateway rollout at WEG, exploring modern proxy architecture and low-level performance optimizations. Rust.
+    \item \textbf{Interactive Portfolio (2026):} Built \href{https://rosa-gabriel.github.io}{rosa-gabriel.github.io} with seven live architecture simulations (streaming vs. batch ETL, API gateway, SSO, Kubernetes, observability, DDD). Bilingual and WCAG 2.2 AA compliant. React, TypeScript.
+\end{itemize}
+
+\section{Languages and Certificates}
+\begin{itemize}
+    \item \textbf{English:} C1, University of Michigan English Proficiency (score 73, Nov 2020) $|$ \textbf{Portuguese:} Native
+\end{itemize}
+\end{document}
