@@ -30,8 +30,11 @@ i18n
     },
   })
 
-i18n.on('languageChanged', (lng) => {
+const syncDocumentLanguage = (lng: string) => {
   document.documentElement.lang = lng
-})
+}
+
+syncDocumentLanguage(i18n.resolvedLanguage ?? i18n.language)
+i18n.on('languageChanged', syncDocumentLanguage)
 
 export default i18n

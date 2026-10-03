@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { isMotionPaused } from '@/lib/motion'
 
 const MAX_FRAME_MS = 64
 const VERTICAL_BREAKPOINT = 720
@@ -24,7 +25,7 @@ export function useFlowLoop(step: (dt: number, autoplay: boolean) => void) {
     const loop = (now: number) => {
       const dt = last ? Math.min(now - last, MAX_FRAME_MS) : 16
       last = now
-      stepRef.current(dt, autoplay)
+      stepRef.current(dt, autoplay && !isMotionPaused())
       setFrame((value) => value + 1)
       frame = requestAnimationFrame(loop)
     }

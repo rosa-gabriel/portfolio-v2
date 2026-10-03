@@ -678,5 +678,13 @@
     "copyEmail": "Copy email",
     "copied": "Copied!",
     "copiedAnnouncement": "Email address copied to clipboard"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "language": "Language",
+    "toggleTheme": "Toggle light and dark theme",
+    "pauseMotion": "Pause animations",
+    "resumeMotion": "Resume animations",
+    "scrollRegion": "{{label}}, scroll with the arrow keys"
   }
 }

@@ -44,7 +44,10 @@ export function Highlights() {
 
       <div
         ref={scrollerRef}
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        tabIndex={0}
+        role="group"
+        aria-label={t('a11y.scrollRegion', { label: t('highlights.label') })}
+        className="rounded-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {HIGHLIGHTS.map(({ id, path, article }, index) => (
           <article

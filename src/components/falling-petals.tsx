@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { isMotionPaused } from '@/lib/motion'
 
 const PETAL_PATH = 'M32 32C18 30 15 14 32 5C49 14 46 30 32 32Z'
 const PETAL_CENTER = { x: 32, y: 18.5 }
@@ -141,6 +142,7 @@ export function FallingPetals() {
     let lastSpawn = 0
 
     const onScroll = () => {
+      if (isMotionPaused()) return
       const now = performance.now()
       const delta = Math.abs(window.scrollY - lastY)
       const velocity = delta / Math.max(now - lastTime, 1)

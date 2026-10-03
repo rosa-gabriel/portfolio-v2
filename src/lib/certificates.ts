@@ -5,6 +5,7 @@ export type Certificate = {
   issued: string
   credentialUrl?: string
   tags: string[]
+  draft?: boolean
 }
 
 export const certificates: Certificate[] = [
@@ -17,6 +18,7 @@ export const certificates: Certificate[] = [
   },
   {
     id: 'cert-1',
+    draft: true,
     title: 'Certificate title',
     issuer: 'Issuer',
     issued: '2025-01',
@@ -24,6 +26,7 @@ export const certificates: Certificate[] = [
   },
   {
     id: 'cert-2',
+    draft: true,
     title: 'Certificate title',
     issuer: 'Issuer',
     issued: '2024-06',
@@ -31,6 +34,7 @@ export const certificates: Certificate[] = [
   },
   {
     id: 'cert-3',
+    draft: true,
     title: 'Certificate title',
     issuer: 'Issuer',
     issued: '2024-01',

@@ -31,7 +31,7 @@ type CarouselDotsProps = {
 export function CarouselDots({ positions, active, onSelect, label }: CarouselDotsProps) {
   if (positions <= 1) return null
   return (
-    <div className="mt-4 flex justify-center gap-1.5">
+    <div className="mt-2 flex justify-center">
       {Array.from({ length: positions }, (_, index) => (
         <button
           key={index}
@@ -39,11 +39,15 @@ export function CarouselDots({ positions, active, onSelect, label }: CarouselDot
           aria-label={label(index)}
           aria-current={index === active}
           onClick={() => onSelect(index)}
-          className={cn(
-            'h-1.5 rounded-full transition-all duration-300',
-            index === active ? 'w-6 bg-primary' : 'w-1.5 bg-border hover:bg-muted-foreground',
-          )}
-        />
+          className="group grid h-6 min-w-6 place-items-center rounded-full px-1 outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+        >
+          <span
+            className={cn(
+              'h-1.5 rounded-full transition-all duration-300',
+              index === active ? 'w-6 bg-primary' : 'w-1.5 bg-border group-hover:bg-muted-foreground',
+            )}
+          />
+        </button>
       ))}
     </div>
   )

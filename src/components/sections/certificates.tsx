@@ -40,7 +40,10 @@ export function Certificates() {
 
       <div
         ref={scrollerRef}
-        className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        tabIndex={0}
+        role="group"
+        aria-label={t('a11y.scrollRegion', { label: t('certificates.label') })}
+        className="rounded-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {certificates.map((certificate, index) => {
           const [year, month] = certificate.issued.split('-').map(Number)

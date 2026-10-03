@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useMotionPaused } from '@/lib/motion'
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -9,6 +10,7 @@ export function useCarousel(count: number, autoAdvanceMs: number) {
   const [seen, setSeen] = useState<Set<number>>(() => new Set())
   const [paused, setPaused] = useState(false)
   const [onScreen, setOnScreen] = useState(false)
+  const motionPaused = useMotionPaused()
 
   const step = useCallback(() => {
     const scroller = scrollerRef.current
@@ -75,10 +77,10 @@ export function useCarousel(count: number, autoAdvanceMs: number) {
   }, [count, step])
 
   useEffect(() => {
-    if (paused || !onScreen || positions <= 1 || prefersReducedMotion()) return
+    if (paused || motionPaused || !onScreen || positions <= 1 || prefersReducedMotion()) return
     const timer = window.setInterval(() => move(1), autoAdvanceMs)
     return () => window.clearInterval(timer)
-  }, [paused, onScreen, positions, move, autoAdvanceMs])
+  }, [paused, motionPaused, onScreen, positions, move, autoAdvanceMs])
 
   const pauseHandlers = {
     onMouseEnter: () => setPaused(true),

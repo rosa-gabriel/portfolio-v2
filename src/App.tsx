@@ -33,9 +33,15 @@ function App() {
 
   return (
     <div className="flex min-h-svh flex-col">
+      <a
+        href="#main"
+        className="sr-only z-50 rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+      >
+        {t('a11y.skipToContent')}
+      </a>
       <VineMargins />
       <StatusBar />
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <div className="flex flex-col lg:min-h-[calc(100svh-3rem)]">
           <div className="flex flex-1 flex-col justify-center">
             <Hero />

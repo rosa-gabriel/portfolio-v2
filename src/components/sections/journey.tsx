@@ -19,15 +19,15 @@ import { reveal } from '@/lib/reveal'
 
 const laneStyles: Record<JourneyLane, { bar: string; text: string; chip: string; icon: typeof Briefcase }> = {
   work: {
-    bar: 'border-kanagawa-blue/60 bg-kanagawa-blue/15 group-hover:bg-kanagawa-blue/25 group-data-[selected=true]:bg-kanagawa-blue/30 group-data-[selected=true]:border-kanagawa-blue',
+    bar: 'border-kanagawa-blue/60 bg-kanagawa-blue/10 group-hover:bg-kanagawa-blue/15 group-data-[selected=true]:bg-kanagawa-blue/20 group-data-[selected=true]:border-kanagawa-blue',
     text: 'text-kanagawa-blue',
-    chip: 'border-kanagawa-blue/40 bg-kanagawa-blue/10 text-kanagawa-blue',
+    chip: 'border-kanagawa-blue/40 bg-background/80 text-kanagawa-blue',
     icon: Briefcase,
   },
   education: {
-    bar: 'border-kanagawa-violet/60 bg-kanagawa-violet/15 group-hover:bg-kanagawa-violet/25 group-data-[selected=true]:bg-kanagawa-violet/30 group-data-[selected=true]:border-kanagawa-violet',
+    bar: 'border-kanagawa-violet/60 bg-kanagawa-violet/10 group-hover:bg-kanagawa-violet/15 group-data-[selected=true]:bg-kanagawa-violet/20 group-data-[selected=true]:border-kanagawa-violet',
     text: 'text-kanagawa-violet',
-    chip: 'border-kanagawa-violet/40 bg-kanagawa-violet/10 text-kanagawa-violet',
+    chip: 'border-kanagawa-violet/40 bg-background/80 text-kanagawa-violet',
     icon: GraduationCap,
   },
 }
@@ -265,7 +265,7 @@ export function Journey() {
                                   <span className="journey-sheen absolute inset-y-0 -left-1/2 w-1/2" />
                                 </span>
                                 <span className="journey-label relative flex h-full min-w-0 flex-col justify-center px-2.5 leading-tight">
-                                  <span className={cn('truncate text-[0.65rem]', style.text)}>{entry.org}</span>
+                                  <span className="truncate text-[0.65rem] text-foreground">{entry.org}</span>
                                   <span className="truncate text-xs font-medium">{t(`journey.items.${entry.id}.short`)}</span>
                                 </span>
                                 {!entry.end && (

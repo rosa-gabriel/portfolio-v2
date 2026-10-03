@@ -678,5 +678,13 @@
     "copyEmail": "Copiar email",
     "copied": "Copiado!",
     "copiedAnnouncement": "Endereço de email copiado"
+  },
+  "a11y": {
+    "skipToContent": "Pular para o conteúdo",
+    "language": "Idioma",
+    "toggleTheme": "Alternar tema claro e escuro",
+    "pauseMotion": "Pausar animações",
+    "resumeMotion": "Retomar animações",
+    "scrollRegion": "{{label}}, role com as setas do teclado"
   }
 }

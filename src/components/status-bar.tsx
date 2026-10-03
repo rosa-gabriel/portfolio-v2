@@ -1,4 +1,5 @@
 import { LanguageSwitcher } from '@/components/language-switcher'
+import { MotionToggle } from '@/components/motion-toggle'
 import { RoseBadge } from '@/components/rose-badge'
 import { ThemeToggle } from '@/components/theme-toggle'
 
@@ -12,6 +13,7 @@ export function StatusBar() {
       <RoseBadge />
       <div className="flex items-center justify-end gap-1">
         <LanguageSwitcher />
+        <MotionToggle />
         <ThemeToggle />
       </div>
     </header>

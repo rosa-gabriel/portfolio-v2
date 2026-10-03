@@ -3,6 +3,7 @@ import { Clock, Database, History, Power, RotateCcw, Send, Zap } from 'lucide-re
 import { useCachedTranslation } from '@/i18n/use-cached-translation'
 import { FlowAction, FlowSection } from '@/components/flows/flow-section'
 import { TechMark } from '@/components/tech-mark'
+import { isMotionPaused } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 import {
   horizontal,
@@ -72,7 +73,7 @@ export function ArchitectureFlow() {
     const loop = (now: number) => {
       const dt = last ? Math.min(now - last, MAX_FRAME_MS) : 16
       last = now
-      step(sim, dt, autoplay)
+      step(sim, dt, autoplay && !isMotionPaused())
       setFrame((value) => value + 1)
       frame = requestAnimationFrame(loop)
     }

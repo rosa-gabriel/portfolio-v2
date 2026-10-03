@@ -8,11 +8,11 @@ const languageLabels: Record<(typeof supportedLanguages)[number], string> = {
 }
 
 export function LanguageSwitcher() {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const currentLanguage = i18n.resolvedLanguage ?? i18n.language
 
   return (
-    <div role="group" aria-label="Language" className="inline-flex gap-1">
+    <div role="group" aria-label={t('a11y.language')} className="inline-flex gap-1">
       {supportedLanguages.map((lng) => (
         <Button
           key={lng}
